@@ -24,6 +24,13 @@ Route::get('/', function() {
     ]);
 })->middleware('guest');
 
+Route::get('/catalog', function() {
+    return view('guest.catalog', [
+        'title' => "Catalog",
+        'products' => Product::all()
+    ]);
+});
+
 Route::get('/login', [UserController::class, 'index'])->middleware('guest');
 
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');

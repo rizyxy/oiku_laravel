@@ -15,7 +15,7 @@
             <h2 class="product-title">{{ $product->product_name }}</h2>
             <p>{{ $product->product_desc }}</p>
             <span class="price">Rp {{ $product->product_price }}</span>
-            <a onclick="return addItem(new item('hello', 'price', 20000))" class="all-btn add-cart">Order Now</a>
+            <a onclick="return addItem(new item('', '{{ $product->product_name }}', {{ $product->product_price }}))" class="all-btn add-cart">Order Now</a>
         </div>
         @endforeach
     </div>

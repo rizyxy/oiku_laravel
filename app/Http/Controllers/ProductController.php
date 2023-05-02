@@ -44,9 +44,12 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
+        $image = $request->file('product_image');
+        $path =  $image->store('product_images');
+
         Product::create([
             'id_consignor' => Auth::user()->id,
-            'product_image' => Storage::url($data['product_image']),
+            'product_image' => $path,
             'product_name' => $data['product_name'],
             'product_desc' => $data['product_desc'],
             'product_price' => $data['product_price']

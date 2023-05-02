@@ -4,7 +4,7 @@
     </div>
     <nav class="navbar">
         <a href="#home">Home</a>
-        <a href="catalog.html">Catalog</a>
+        <a href="/catalog">Catalog</a>
         <a href="#location">Our Location</a>
         <a href="#footer">Contact</a>
         <a href="/login" class="acc">Log in</a>

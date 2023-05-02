@@ -11,7 +11,6 @@
         <a href="/customer/catalog">Add Order</a>
     </div>
     <div class="cart-content" id="cart-content">
-
     </div>
     <div class="total">
         <div class="total-title">Total</div>

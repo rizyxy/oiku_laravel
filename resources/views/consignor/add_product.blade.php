@@ -7,7 +7,7 @@
 @section('content')
 <section class="Container">
     <h1>Add Product</h1>
-<form action="/consignor/add-product/store-product" method="POST">
+<form action="/consignor/add-product/store-product" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="file" name="product_image" id="item-img" placeholder="Item Image" required>
     <input type="text" name="product_name" id="item-name" placeholder="Item Name" required>

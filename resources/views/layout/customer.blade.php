@@ -12,7 +12,7 @@
     @yield('css')
 
 </head>
-<body>
+<body onload="return loadCart()">
     
     @include('components.customer_navbar')
 
