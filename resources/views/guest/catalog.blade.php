@@ -15,7 +15,7 @@
             <h2 class="product-title">{{ $product->product_name }}</h2>
             <p>{{ $product->product_desc }}</p>
             <span class="price">Rp {{ $product->product_price }}</span>
-            <a href="login.html" class="all-btn add-cart">Order Now</a>
+            <a href="/login" class="all-btn add-cart">Order Now</a>
         </div>
         @endforeach
     </div>

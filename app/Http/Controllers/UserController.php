@@ -43,6 +43,7 @@ class UserController extends Controller
             'title' => "Register"
         ]);
     }
+    
 
     public function store(Request $request) {
         $request->validate([
@@ -86,6 +87,34 @@ class UserController extends Controller
         }
 
         return redirect('/');
+    }
+
+    public function show() {
+        if (auth()->user()->role == 'customer') {
+            return view('customer.profile', [
+                'title' => 'Profile',
+                'user' => Auth::user()
+            ]);
+        } else if (auth()->user()->role == 'consignor') {
+            return view('consignor.profile', [
+                'title' => 'Profile',
+                'user' => Auth::user()
+            ]);
+        }
+    }
+
+    public function edit() {
+        if (auth()->user()->role == 'customer') {
+            return view('customer.edit_profile', [
+                'title' => 'Edit Profile',
+                'user' => Auth::user()
+            ]);
+        } else if (auth()->user()->role == 'consignor') {
+            return view('consignor.edit_profile', [
+                'title' => 'Edit Profile',
+                'user' => Auth::user()
+            ]);
+        }
     }
 
     public function update(Request $request, User $user) {

@@ -43,7 +43,7 @@
                     <input type="tel" class="price-product" value="Rp {{ $product->product_price }}" readonly>
                 </td>
                 <td>
-                    <button class="crud-btn edit-user">Edit</button>
+                    <a class="crud-btn edit-user">Edit</a>
                 </td>
                 <td>
                     <form action="/consignor/delete/{{ $product->id }}" method="POST">

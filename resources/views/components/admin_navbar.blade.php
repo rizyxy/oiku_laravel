@@ -22,19 +22,19 @@
                 <h2>Admin</h2>
             </div>
             <hr>
-            <a href="dash-admin-products.html" class="sub-menu-link">
+            <a href="/admin/home" class="sub-menu-link">
                 <p>Manage Products</p>
                 <span>></span>
             </a>
-            <a href="dash-admin-takeOrder.html" class="sub-menu-link">
+            <a href="/admin/take-order" class="sub-menu-link">
                 <p>Take Order</p>
                 <span>></span>
             </a>
-            <a href="dash-admin-addConsignor.html" class="sub-menu-link">
+            <a href="/admin/add-consignor" class="sub-menu-link">
                 <p>Add Consignor</p>
                 <span>></span>
             </a>
-            <a href="../login.html" class="sub-menu-link">
+            <a href="/logout" class="sub-menu-link">
                 <p>Log Out</p>
                 <span>></span>
             </a>

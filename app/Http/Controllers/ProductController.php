@@ -16,9 +16,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('consignor.home', [
-            'title' => 'Product',
-            'products' => Product::all()->where('id_consignor', '=', Auth::user()->id)
+
+        if (auth()->user()->role == 'customer') {
+            return view('customer.catalog', [
+                'title' => 'Catalog',
+                'products' => Product::all()
+            ]);
+        } else if (auth()->user()->role == 'consignor') {
+            return view('consignor.home', [
+                'title' => 'Home',
+                'products' => Product::all()->where('id_consignor' , '=', auth()->user()->id)
+            ]);
+        } else if (auth()->user()->role == 'admin') {
+            return view('admin.home', [
+                'title' => 'Home',
+                'products' => Product::all()
+            ]);
+        }
+
+        return view('guest.catalog', [
+            'title' => 'Catalog',
+            'products' => Product::all()
         ]);
     }
 

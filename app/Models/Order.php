@@ -13,4 +13,8 @@ class Order extends Model
         'id_customer',
         'status'
     ];
+
+    public function orderDetails() {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

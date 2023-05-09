@@ -23,7 +23,7 @@
                 <p>Profile</p>
                 <span>></span>
             </a>
-            <a href="dash-const-product.html" class="sub-menu-link">
+            <a href="/consignor/product" class="sub-menu-link">
                 <p>Manage Product</p>
                 <span>></span>
             </a>

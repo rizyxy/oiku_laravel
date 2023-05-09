@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,97 +19,83 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-    return view('guest.home', [
-        'title' => "Home",
-        'products' => Product::all()
-    ]);
-})->middleware('guest');
+//Guest
+Route::middleware(['guest'])->group(function() {
 
-Route::get('/catalog', function() {
-    return view('guest.catalog', [
-        'title' => "Catalog",
-        'products' => Product::all()
-    ]);
+    Route::get('/', function() {
+        return view('guest.home', [
+            'title' => 'Home',
+            'products' => Product::take(4)->get()
+        ]);
+    });
+    Route::get('/catalog', function() {
+        return view('guest.catalog', [ProductController::class, 'index']);
+    });
+    Route::get('/login', [UserController::class, 'index']);
+    Route::get('/register', [UserController::class, 'create']);
+
+    Route::post('/login', [UserController::class, 'login']);
+    Route::post('/store-user', [UserController::class, 'store']);
 });
 
-Route::get('/login', [UserController::class, 'index'])->middleware('guest');
 
-Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+//Customer
+Route::prefix('customer')->middleware(['customer'])->group(function() {
 
-Route::get('/customer/home', function() {
-    return view('customer.home', [
-        'title' => "Home",
-        'products' => Product::all()
-    ]);
+    Route::get('/home', function() {
+        return view('customer.home', [
+            'title' => 'Home',
+            'products' => Product::take(4)->get()
+        ]);
+    });
+
+    Route::get('/catalog', [ProductController::class, 'index']);
+    Route::get('/profile', [UserController::class, 'show']);
+    Route::get('/order', [CartController::class, 'index']);
+    Route::get('/history', [OrderController::class, 'index']);
+
 });
 
-Route::get('/customer/catalog', function() {
-    return view('customer.catalog', [
-        'title' => "Catalog",
-        'products' => Product::all()
-    ]);
+
+//Consignor
+Route::prefix('consignor')->middleware(['consignor'])->group(function() {
+
+    Route::get('/product', [ProductController::class, 'index']);
+    Route::get('/transaction', [OrderController::class, 'index']);
+    Route::get('/add-product', [ProductController::class, 'create']);
+    Route::get('/profile', [UserController::class, 'show']);
+    Route::get('/edit-profile', [UserController::class, 'edit']);
+
+    Route::post('/add-product/store-product', [ProductController::class, 'store']);
+    Route::delete('/delete/{product:id}', [ProductController::class, 'destroy']);
+
 });
 
-Route::get('/customer/profile', function() {
-    return view('customer.profile', [
-        'title' => "Profile"
-    ]);
+
+//Admin
+Route::prefix('admin')->middleware(['admin'])->group(function() {
+    
+    Route::get('/home', [ProductController::class, 'index']);
+    Route::get('/transaction', [OrderController::class, 'index']);
+    Route::get('/take-order', [OrderController::class, 'create']);
+
+    Route::get('/consignor', function() {
+        return view('admin.consignor', [
+            'title' => 'Consignor List',
+            'consignors' => User::all()->where('role', '=', 'consignor')
+        ]);
+    });
+    Route::get('/customer', function() {
+        return view('admin.customer', [
+            'title' => 'All Customer',
+            'customers' => User::all()->where('role', '=', 'consignor')
+        ]);
+    });
 });
 
-Route::get('/customer/order', [OrderController::class, 'index']);
 
-Route::get('/customer/history', [OrderController::class, 'show']);
 
-Route::get('/consignor/product', [ProductController::class, 'index']);
 
-Route::get('/consignor/transaction', function() {
-    return view('consignor.transaction', [
-        'title' => 'Transaction'
-    ]);
-});
-
-Route::get('/consignor/add-product', [ProductController::class, 'create']);
-
-Route::post('/consignor/add-product/store-product', [ProductController::class, 'store']);
-
-Route::delete('/consignor/delete/{product:id}', [ProductController::class, 'destroy']);
-
-Route::get('/consignor/profile', function() {
-    return view('consignor.profile', [
-        'title' => 'Profile'
-    ]);
-});
-
-Route::get('/consignor/edit-profil', function() {
-    return view('consignor.edit_profile', [
-        'title' => 'Edit Profile'
-    ]);
-});
-
-Route::get('/admin/home', function() {
-    return view('admin.home', [
-        'title' => 'Home'
-    ]);
-});
-
-Route::get('/admin/consignor', function() {
-    return view('admin.consignor', [
-        'title' => 'Consignor List'
-    ]);
-});
-
-Route::get('/admin/customer', function() {
-    return view('admin.customer', [
-        'title' => 'Customer List'
-    ]);
-});
-
-Route::get('/admin/transaction', function() {
-    return view('admin.transaction', [
-        'title' => 'Transaction'
-    ]);
-});
 
 Route::get('/admin/add-consignor', function() {
     return view('admin.add_consignor', [
@@ -115,15 +103,9 @@ Route::get('/admin/add-consignor', function() {
     ]);
 });
 
-Route::get('/admin/take-order', function() {
-    return view('admin.take_order', [
-        'title' => 'Take Order'
-    ]);
-});
 
-Route::post('/login', [UserController::class, 'login']);
 
-Route::post('/store-user', [UserController::class, 'store'])->middleware('guest');
+
 
 Route::get('/logout', [UserController::class, 'logout']);
 

@@ -13,4 +13,8 @@ class OrderDetail extends Model
         'order_id',
         'product_id'
     ];
+
+    public function parentOrder() {
+        $this->belongsTo(Order::class);
+    }
 }
