@@ -10,27 +10,27 @@
 </section>
 <section class="main-body">
     <form class="profil">
-        <img class="prof-img" src="../images/562ebed9cd49b9a09baa35eddfe86b00.jpg"><br>
+        <img class="prof-img" src="{{ asset('storage/'.$user->profile_pic) }}" width="10%"><br>
         <table>
             <tr>
                 <td class="label"><label>Nama Pemilik</label></td>
                 <td class="equals">:</td>
                 <td class="input">
-                    <input class="fill" type="text" name="nama" id="nama" value="{{ auth()->user()->name }}"><br>
+                    <input class="fill" type="text" name="nama" id="nama" value="{{ $user->name }}"><br>
                 </td>
             </tr>
             <tr>
                 <td class="label"><label>ID</label></td>
                 <td class="equals">:</td>
                 <td class="input">
-                    <input class="fill" type="text" name="nama" id="nama" value="{{ auth()->user()->id }}"><br>
+                    <input class="fill" type="text" name="nama" id="nama" value="{{ $user->id }}"><br>
                 </td>
             </tr>
             <tr>
                 <td class="label"><label>Email</label></td>
                 <td class="equals">:</td>
                 <td class="input">
-                    <input class="fill" type="text" name="email" id="email" value="{{ auth()->user()->email }}"><br>
+                    <input class="fill" type="text" name="email" id="email" value="{{ $user->email }}"><br>
                 </td>
             </tr>
         </table>

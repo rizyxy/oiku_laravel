@@ -27,9 +27,15 @@ class OrderController extends Controller
                 'orders' => Order::with('orderDetails')->get()
             ]);
         } else if(auth()->user()->role == 'consignor') {
-            return view('consignor.transaction'. [
+            return view('consignor.transaction', [
                 'title' => 'Transaction',
-                'orders' => OrderDetail::with('order')->get() 
+                'orders' => Order::with(['orderDetails' => function ($query) {
+                    $query->whereHas('product', function ($query) {
+                        $query->where('id_consignor', auth()->id());
+                    })->with(['product' => function ($query) {
+                        $query->where('id_consignor', auth()->id());
+                    }]);
+                }])->get()
             ]);
         }
     }

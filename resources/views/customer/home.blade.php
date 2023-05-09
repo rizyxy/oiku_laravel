@@ -10,7 +10,7 @@
         <a href="#catalog" class="all-btn">Get it Now</a>
     </div>
     <div class="box">
-        <img src="../images/various-cakes-supermarket-shelves-sale.jpg" alt="Cake shelves">
+        <img src="{{ asset('assets/images/various-cakes-supermarket-shelves-sale.jpg') }}" alt="Cake shelves">
     </div>
 </section>
 <br>

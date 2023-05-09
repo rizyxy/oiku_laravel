@@ -12,13 +12,13 @@
     <div class="menu-list">
         <div class="fas fa-bars" id="menu-btn"></div>
         <div class="profile-down">
-            <img src="../images/562ebed9cd49b9a09baa35eddfe86b00.jpg" onclick="toggleMenu()">
+            <img src="{{ asset('storage/'.auth()->user()->profile_pic) }}" onclick="toggleMenu()">
         </div>
     </div>
     <div class="sub-menu-wrap" id="subMenu">
         <div class="sub-menu">
             <div class="user-info">
-                <img src="../images/562ebed9cd49b9a09baa35eddfe86b00.jpg">
+                <img src="{{ asset('storage/'.auth()->user()->profile_pic) }}">
                 <h2>Admin</h2>
             </div>
             <hr>

@@ -19,67 +19,35 @@
                 <th>Detail Products</th>
                 <th>Total Price</th>
             </tr>
+            @foreach ($orders as $order)
             <tr>
                 <td class="id-transaction">
-                    <h3>#TR001</h3>
+                    <h3>{{ $order->id }}</h3>
                 </td>
                 <td class="id-customer">
-                    <h3>#CS001</h3>
+                    <h3>{{ $order->id_customer }}</h3>
                 </td>
                 <td class="order-time">
-                    <time datetime="2023-03-25 10:00">2023-03-25 10:00</time>
+                    <time datetime="2023-03-25 10:00">{{ $order->timestamps }}</time>
                 </td>
                 <td>
-                    <div class="cartinfo">
-                        <img src="../images/Blueberry Cake.jpg" alt="Blueberry Cake">
-                        <div class="detail-product">
-                            <h2>Blueberry Cake</h2>
-                            <h3 class="id-product">#AA003</h3>
-                            <h3>Rp110000</h3>
-                            <small>Quantity : 1</small>
-                        </div>
-                    </div>
-                    <div class="cartinfo">
-                        <img src="../images/Matcha and Mint.jpg" alt="Matcha and Min Cake">
-                        <div class="detail-product">
-                            <h2>Matcha and Min Cake</h2>
-                            <h3 class="id-product">#AA004</h3>
-                            <h3>Rp150000</h3>
-                            <small>Quantity : 1</small>
-                        </div>
-                    </div>
+                    @foreach ($orders->orderDetails as $detail)
+                        @if ($detail->product->user_id === auth()->id())
+                        <tr>
+                            <td>{{ $detail->product->name }}</td>
+                            <td>{{ $detail->product->price }}</td>
+                            <td>{{ $detail->quantity }}</td>
+                            <td>{{ $detail->product->price * $detail->quantity }}</td>
+                        </tr>
+                        @endif
+                    @endforeach
                 </td>
                 <td class="price-product">
                     <h3>Rp260000</h3>
                 </td>
             </tr>
             <hr>
-            <tr>
-                <td class="id-transaction">
-                    <h3>#TR002</h3>
-                </td>
-                <td class="id-customer">
-                    <h3>#CS002</h3>
-                </td>
-                <td class="order-time">
-                    <time datetime="2023-03-25 10:00">2023-03-25 10:00</time>
-                </td>
-                <td>
-                    <div class="cartinfo">
-                        <img src="../images/Chocolate Truffle Tart (gluten-free, dairy-free).jpg" alt="Chocolate Truffle">
-                        <div class="detail-product">
-                            <h2>Chocolate Truffle</h2>
-                            <h3 class="id-product">#AA002</h3>
-                            <h3>Rp130000</h3>
-                            <small>Quantity : 2</small>
-                        </div>
-                    </div>
-                </td>
-                <td class="price-product">
-                    <h3>Rp260000</h3>
-                </td>
-            </tr>
-            
+            @endforeach            
         </table>
     </div>
 </section>
