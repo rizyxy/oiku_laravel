@@ -12,7 +12,8 @@ class OrderDetail extends Model
     protected $fillable = [
         'order_id',
         'product_id',
-        'quantity'
+        'quantity',
+        'subtotal'
     ];
 
     public function parentOrder() {
@@ -20,6 +21,6 @@ class OrderDetail extends Model
     }
 
     public function product() {
-        $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

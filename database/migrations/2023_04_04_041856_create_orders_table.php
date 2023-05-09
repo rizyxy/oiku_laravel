@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('id_customer')->unsigned();
             $table->string('status')->default('waiting');
+            $table->integer('total');
 
             $table->foreign('id_customer')->references('id')->on('users');
         });

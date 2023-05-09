@@ -22,5 +22,4 @@
 
 </body>
 <script src="{!! asset('assets/js/customer/main.js') !!}"></script>
-<script src="{{ asset('assets/js/customer/cart.js') }}"></script>
 </html>

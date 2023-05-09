@@ -32,7 +32,7 @@
     <div class="box-container">
         @foreach ($products as $product)
         <div class="box">
-            <img src="{{ $product->product_image }}"
+            <img src="{{ asset('storage/'.$product->product_image) }}"
                 alt="Strawberry Cake" class="product-img">
             <h2 class="product-title">{{ $product->product_name }}</h2>
             <p>{{ $product->product_desc }}</p>

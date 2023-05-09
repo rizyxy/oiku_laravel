@@ -17,27 +17,29 @@ class ProductController extends Controller
     public function index()
     {
 
-        if (auth()->user()->role == 'customer') {
-            return view('customer.catalog', [
+        if (auth()->user() != null) {
+            if (auth()->user()->role == 'customer') {
+                return view('customer.catalog', [
+                    'title' => 'Catalog',
+                    'products' => Product::all()
+                ]);
+            } else if (auth()->user()->role == 'consignor') {
+                return view('consignor.home', [
+                    'title' => 'Home',
+                    'products' => Product::all()->where('id_consignor' , '=', auth()->user()->id)
+                ]);
+            } else if (auth()->user()->role == 'admin') {
+                return view('admin.home', [
+                    'title' => 'Home',
+                    'products' => Product::all()
+                ]);
+            }
+        } else {
+            return view('guest.catalog', [
                 'title' => 'Catalog',
                 'products' => Product::all()
             ]);
-        } else if (auth()->user()->role == 'consignor') {
-            return view('consignor.home', [
-                'title' => 'Home',
-                'products' => Product::all()->where('id_consignor' , '=', auth()->user()->id)
-            ]);
-        } else if (auth()->user()->role == 'admin') {
-            return view('admin.home', [
-                'title' => 'Home',
-                'products' => Product::all()
-            ]);
         }
-
-        return view('guest.catalog', [
-            'title' => 'Catalog',
-            'products' => Product::all()
-        ]);
     }
 
     /**
@@ -95,7 +97,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('consignor.edit_product', [
+            'title' => "Edit Product",
+            'product' => $product
+        ]);
     }
 
     /**
@@ -107,7 +112,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'product_name' => 'required',
+            'product_price' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        Product::where('id', '=', $product->id)->update([
+            'product_name' => $data['product_name'],
+            'product_desc' => $data['product_desc'],
+            'product_price' => $data['product_price']
+        ]);
+
+        return redirect()->back();
     }
 
     /**

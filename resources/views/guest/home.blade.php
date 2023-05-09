@@ -32,12 +32,12 @@
         <div class="box-container">
             @foreach ($products as $product)
             <div class="box">
-                <img src="{{ $product->product_image }}"
+                <img src="{{ asset('storage/'.$product->product_image) }}"
                     alt="Strawberry Cake" class="product-img">
                 <h2 class="product-title">{{ $product->product_name }}</h2>
                 <p>{{ $product->product_desc }}</p>
                 <span class="price">Rp {{ $product->product_price }}</span>
-                <a href="login.html" class="all-btn add-cart">Order Now</a>
+                <a href="/login" class="all-btn add-cart">Order Now</a>
             </div>
             @endforeach
         </div>
@@ -46,7 +46,7 @@
             <h1>Catalog</h1>
             <p>We provide various types of delicious cakes and can be your choice with the best quality.</p>
             <br>
-            <a href="catalog.html" class="all-btn">See More</a>
+            <a href="/catalog" class="all-btn">See More</a>
         </div>
     </section>
 

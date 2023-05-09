@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderDetail;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -19,7 +20,7 @@ class OrderController extends Controller
         if (auth()->user()->role == 'customer') {
             return view('customer.history', [
                 'title' => 'History Order',
-                'orders' => Order::with('orderDetails')->where('id_customer', '=', auth()->user()->id)->get()
+                'orders' => Order::with('orderDetails.product')->where('id_customer', '=', auth()->user()->id)->get()
             ]);
         } else if (auth()->user()->role == 'admin') {
             return view('admin.transaction', [
@@ -64,9 +65,44 @@ class OrderController extends Controller
      * @param  \App\Http\Requests\StoreOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Get the authenticated user
+        $user = auth()->user();
+
+        // Get the cart items from the session
+        $cart = $request->session()->get('cart', []);
+
+        // Calculate the total price of the order
+        $totalPrice = 0;
+        foreach ($cart as $id => $item) {
+            $totalPrice += $item['product']->product_price * $item['quantity'];
+        }
+
+        // Create a new order and save it to the database
+        $order = new Order();
+        $order->id_customer = $user->id;
+        $order->total = $totalPrice;
+        $order->save();
+
+        // Loop through the items in the cart and create new order detail records
+        foreach ($cart as $id => $item) {
+            $product = $item['product'];
+
+            // Create a new order detail record and save it to the database
+            $orderDetail = new OrderDetail();
+            $orderDetail->order_id = $order->id;
+            $orderDetail->product_id = $product->id;
+            $orderDetail->quantity = $item['quantity'];
+            $orderDetail->subtotal = $product->product_price * $item['quantity'];
+            $orderDetail->save();
+        }
+
+        // Clear the cart items from the session
+        $request->session()->forget('cart');
+
+        // Redirect to the order confirmation page
+        return redirect()->back();
     }
 
     /**

@@ -10,7 +10,7 @@
 </section>
 <section class="main-body">
     <form class="profil">
-        <img class="prof-img" src="{{ asset('storage/'.$user->profile_pic) }}"><br>
+        <img class="prof-img" src="{{ asset('storage/'.$user->profile_pic) }}" width="10%"><br>
         <table>
             <tr>
                 <td class="label"><label>Nama</label></td>
@@ -37,7 +37,7 @@
         </table>
     </form>
     <div>
-        <a href=""><button class="edit-prof">Edit Profile</button></a>
+        <a href="/customer/edit-profile"><button class="edit-prof">Edit Profile</button></a>
     </div>
 </section>
 @endsection

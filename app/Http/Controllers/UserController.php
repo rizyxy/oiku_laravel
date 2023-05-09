@@ -123,7 +123,6 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'password' => 'required'
         ]);
 
         $data = $request->all();
@@ -132,7 +131,6 @@ class UserController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'password' => Hash::make($data['password'])
         ]);
 
         return redirect()->back();
