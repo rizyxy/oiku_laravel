@@ -5,7 +5,6 @@
     <nav class="navbar">
         <a href="/">Home</a>
         <a href="/catalog">Catalog</a>
-        <a href="#location">Our Location</a>
         <a href="#footer">Contact</a>
         <a href="/login" class="acc">Log in</a>
         <a href="/register" class="acc">Register</a>
