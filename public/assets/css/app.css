@@ -32,6 +32,10 @@ body{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 html{
@@ -317,6 +321,11 @@ html{
 .footer {
     text-align: center;
     background-color: #fff;
+    display: block;
+    flex: 1 0 auto;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 .footer .box-container{
     display: grid;

@@ -22,24 +22,19 @@
                 <th> </th>
                 <th> </th>
             </tr>
+            @foreach ($customers as $customer)
             <tr>
                 <td class="fill" >
-                    <input type="text" name="Id-user" id="Id-user" value="#01AA001" readonly>
+                    <input type="text" name="Id-user" id="Id-user" value="{{ $customer->id }}" readonly>
                 </td>
                 <td class="fill">
-                    <input type="datetime" name="register-time" id="register-time" value="2023-03-25 10:23" readonly>
+                    <input type="datetime" name="register-time" id="register-time" value="{{ $customer->timestamps }}" readonly>
                 </td>
                 <td class="fill">
-                    <input type="text" name="name-user" id="name-user" value="Consignor 1" readonly>
+                    <input type="text" name="name-user" id="name-user" value="{{ $customer->name }}" readonly>
                 </td>
                 <td class="fill">
-                    <input type="email" name="email-user" id="email-user" value="consignor1@gmail.com" readonly>
-                </td>
-                <td class="fill">
-                    <input type="text" name="addres" id="address" value="Surabaya" readonly>
-                </td>
-                <td class="fill">
-                    <input type="password" name="pass-user" id="pass-user" value="password123" readonly>
+                    <input type="email" name="email-user" id="email-user" value="{{  $customer->email }}" readonly>
                 </td>
                 <td class="fill">
                     <button class="crud-btn edit-user">Edit</button>
@@ -48,6 +43,7 @@
                     <button class="crud-btn del-user">Delete</button>
                 </td>
             </tr>
+            @endforeach
 
         </table>
     </div>

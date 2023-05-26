@@ -19,7 +19,7 @@
         <div class="content-const">
             <h1>Interested in becoming a consignor?</h1>
             <p>Become a consignor and let us sell your cakes, get all benefits from partnership</p>
-            <a href="/" class="all-btn">Join</a>
+            <a href="https://wa.link/5jgqzq" class="all-btn">Join</a>
         </div>
     </section>
 

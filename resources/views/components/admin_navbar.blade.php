@@ -19,7 +19,7 @@
         <div class="sub-menu">
             <div class="user-info">
                 <img src="{{ asset('storage/'.auth()->user()->profile_pic) }}">
-                <h2>Admin</h2>
+                <h2>{{ Auth::user()->name }}</h2>
             </div>
             <hr>
             <a href="/admin/home" class="sub-menu-link">

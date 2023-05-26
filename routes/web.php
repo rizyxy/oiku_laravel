@@ -32,6 +32,7 @@ Route::middleware(['guest'])->group(function() {
     Route::get('/login', [UserController::class, 'index']);
     Route::get('/register', [UserController::class, 'create']);
 
+
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/store-user', [UserController::class, 'store']);
 });
@@ -90,6 +91,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     Route::get('/transaction', [OrderController::class, 'index']);
     Route::get('/take-order', [OrderController::class, 'create']);
 
+
     Route::get('/consignor', function() {
         return view('admin.consignor', [
             'title' => 'Consignor List',
@@ -99,7 +101,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     Route::get('/customer', function() {
         return view('admin.customer', [
             'title' => 'All Customer',
-            'customers' => User::all()->where('role', '=', 'consignor')
+            'customers' => User::all()->where('role', '=', 'customer')
         ]);
     });
 });

@@ -1,18 +1,22 @@
 @extends('layout.admin')
 
 @section('css')
-<link rel="stylesheet" href="{!! asset('assets/css/consignor/form.css') !!}">
+<link rel="stylesheet" href="{!! asset('assets/css/admin/form.css') !!}">
 @endsection
 
 @section('content')
 <Section class="Container">
     <h1>Add Consignor</h1>
-    <form action="">
-        <input type="text" name="consignorName" id="consignor-name" placeholder="Consignor Name" required>
-        <input type="email" name="consignorEmail" id="consignor-email" placeholder="Consignor Email" required>
-        <input type="text" name="consignorAddress" id="consignor-address" placeholder="Consignor Address" required>
-        <input type="password" name="consignorPass" id="consignor-pass" placeholder="Consignor Password" required>
-        <button type="submit" class="all-btn btn-add-product">Add Consignor</button>
+    <form action="/store-user" method="POST">
+        @csrf
+        <input type ="text" name="name" placeholder="Consignor Name" id="name" required><br>
+        <input type ="email" name="email" placeholder="Email" id="email" required><br>
+        <input type ="tel" minLength="9" maxlength="13" name="Phone" id="phone" placeholder="Phone Number" required><br>
+        <input type ="password" name="password" placeholder="Password" id="password" required><br>
+        <input type ="password" name="confirm-pass" placeholder="Confirm Password" id="confirm-pass" required><br>
+        <small>At least 8 characters, better use symbols and numbers.</small>
+        <button type="submit">Add Consignor</button>
+        
     </form>
 </Section>
 <br>
