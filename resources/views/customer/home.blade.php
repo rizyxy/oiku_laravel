@@ -19,7 +19,7 @@
     <div class="content-const">
         <h1>Interested in becoming a consignor?</h1>
         <p>Become a consignor and let us sell your cakes, get all benefits from partnership</p>
-        <a href="../registerConsignor.html" class="all-btn">Join</a>
+        <a href="https://wa.link/5jgqzq" class="all-btn">Join</a>
     </div>
 </section>
 
@@ -30,10 +30,10 @@
     </div>
 
     <div class="box-container">
-        @foreach ($products as $product)
+        @foreach ($products->take(3) as $product)
         <div class="box">
             <img src="{{ asset('storage/'.$product->product_image) }}"
-                alt="Strawberry Cake" class="product-img">
+                alt="{{ $product->product_name }}" class="product-img">
             <h2 class="product-title">{{ $product->product_name }}</h2>
             <p>{{ $product->product_desc }}</p>
             <span class="price">Rp {{ $product->product_price }}</span>
@@ -46,7 +46,7 @@
         <h1>Catalog</h1>
         <p>We provide various types of delicious cakes and can be your choice with the best quality.</p>
         <br>
-        <a href="dash-cust-catalog.html" class="all-btn">See More</a>
+        <a href="/catalogCust" class="all-btn">See More</a>
     </div>
 </section>
 @endsection

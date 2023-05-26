@@ -19,10 +19,11 @@ class ProductController extends Controller
 
         if (auth()->user() != null) {
             if (auth()->user()->role == 'customer') {
-                return view('customer.catalog', [
-                    'title' => 'Catalog',
-                    'products' => Product::all()
-                ]);
+                    return view('customer.home', [
+                        'title' => 'Home',
+                        'products' => Product::all()->where('id_customer' , '=', auth()->user()->id)
+                    ]);
+             
             } else if (auth()->user()->role == 'consignor') {
                 return view('consignor.home', [
                     'title' => 'Home',

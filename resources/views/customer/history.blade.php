@@ -13,37 +13,51 @@
 <div class="cartpage">
     <table>
         <tr>
+            <th>Id Order</th>
             <th>Id Product</th>
             <th>Order Time</th>
             <th>Detail Products</th>
             <th>Amount</th>
             <th>Price</th>
+            <th>status</th>
         </tr>
         @foreach ($orders as $order)
+    @php $rowCount = count($order->orderDetails); @endphp
+    @foreach ($order->orderDetails as $index => $detail)
         <tr>
-            @foreach ($order->orderDetails as $detail)
+            @if ($index === 0)
+                <td class="id-order" rowspan="{{ $rowCount }}">
+                    <h3>{{ $detail->order_id }}</h3>
+                </td>
+            @endif
             <td class="id-product">
                 <h3>{{ $detail->product->id }}</h3>
             </td>
             <td class="order-time">
-                <time datetime="{{ $order->timestamps }}">value</time>
+                <time datetime="{{ $order->timestamps }}">{{ $order->timestamps }}</time>
             </td>
             <td>
                 <div class="cartinfo">
-                    <img src="{{ asset('storage/'.$detail->product->product_image) }}" alt="Blueberry Cake">
+                    <img src="{{ asset('storage/'.$detail->product->product_image) }}" alt="{{ $detail->product->product_name }}">
                     <div class="detail-product">
-                        <h2>{{ $detail->product_name }}</h2>
-                        <h3>Rp {{ $detail->product_price }}</h3>
+                        <h2>{{ $detail->product->product_name }}</h2>
+                        <h3>Rp {{ $detail->product->product_price }}</h3>
                     </div>
                 </div>
             </td>
             <td class="amount-item">{{ $detail->quantity }}</td>
-            @endforeach
-            <td class="price-product">
-                <h3>Rp {{ $order->total }}</h3>
-            </td>
+            @if ($index === 0)
+                <td class="price-product" rowspan="{{ $rowCount }}">
+                    <h3>Rp {{ $order->total }}</h3>
+                </td>
+                <td class="status-product" rowspan="{{ $rowCount }}">
+                    <h3>Waiting</h3>
+                </td>
+            @endif
         </tr>
-        @endforeach
+    @endforeach
+@endforeach
+
     </table>
 </div>
 </div>

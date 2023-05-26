@@ -41,14 +41,19 @@ Route::middleware(['guest'])->group(function() {
 //Customer
 Route::prefix('customer')->middleware(['customer'])->group(function() {
 
+    
     Route::get('/home', function() {
         return view('customer.home', [
             'title' => 'Home',
             'products' => Product::take(4)->get()
         ]);
     });
-
-    Route::get('/catalog', [ProductController::class, 'index']);
+    Route::get('/catalogCust', function() {
+        return view('customer.catalog', [
+            'title' => 'Catalog',
+            'products' => Product::all()
+        ]);
+    });
     Route::get('/profile', [UserController::class, 'show']);
     Route::get('/edit-profile', [UserController::class, 'edit']);
     Route::get('/order', [CartController::class, 'index']);
@@ -92,7 +97,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     Route::get('/take-order', function() {
         return view('admin.take_order', [
             'title' => 'Take Order',
-            'consignors' => User::all()->where('role', '=', 'consignor')
+            'admin' => User::all()->where('role', '=', 'admin')
         ]);
     });
     Route::get('/consignor', function() {
