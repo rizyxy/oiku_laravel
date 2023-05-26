@@ -7,7 +7,7 @@
 @section('content')
 <Section class="Container">
     <h1>Add Consignor</h1>
-    <form action="/store-user" method="POST">
+    <form action="/add_consignor/store_consignor" method="POST">
         @csrf
         <input type ="text" name="name" placeholder="Consignor Name" id="name" required><br>
         <input type ="email" name="email" placeholder="Email" id="email" required><br>

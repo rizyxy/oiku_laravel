@@ -66,6 +66,27 @@ class UserController extends Controller
         return redirect('/login');
     }
 
+    public function add_cons(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'password' => 'required|min:8'
+        ]);
+
+        $data = $request->all();
+
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'role' => 'consignor',
+            'password' => Hash::make($data['password'])
+        ]);
+
+        return redirect()->back();
+    }
+
     public function login(Request $request) {
 
         $request->validate([
@@ -120,17 +141,21 @@ class UserController extends Controller
     public function update(Request $request, User $user) {
 
         $request->validate([
+            'image' => 'required',
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
+            'password' => 'required',
         ]);
 
         $data = $request->all();
 
         User::where('id', '=', $user->id)->update([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
+            'image' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
         ]);
 
         return redirect()->back();

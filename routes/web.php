@@ -89,9 +89,12 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     
     Route::get('/home', [ProductController::class, 'index']);
     Route::get('/transaction', [OrderController::class, 'index']);
-    Route::get('/take-order', [OrderController::class, 'create']);
-
-
+    Route::get('/take-order', function() {
+        return view('admin.take_order', [
+            'title' => 'Take Order',
+            'consignors' => User::all()->where('role', '=', 'consignor')
+        ]);
+    });
     Route::get('/consignor', function() {
         return view('admin.consignor', [
             'title' => 'Consignor List',
@@ -104,17 +107,19 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
             'customers' => User::all()->where('role', '=', 'customer')
         ]);
     });
+    Route::get('/add-consignor', function() {
+        return view('admin.add_consignor', [
+            'title' => 'Add Consignor'
+        ]);
+    });
+    Route::post('/add-consignor/store-consignor', [UserController::class, 'add_cons']);
 });
 
 
 
 
 
-Route::get('/admin/add-consignor', function() {
-    return view('admin.add_consignor', [
-        'title' => 'Add Consignor'
-    ]);
-});
+
 
 
 

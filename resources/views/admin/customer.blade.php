@@ -7,8 +7,7 @@
 @section('content')
 <section class="main-body">
     <div class="heading row">
-        <h4>Consignor</h4>
-        <a href="dash-admin-addConsignor.html">Add Consignor</a>
+        <h4>Customer List</h4>
     </div>
     <div class="cartpage user-info">
         <table>
@@ -18,7 +17,6 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>Password</th>
                 <th> </th>
                 <th> </th>
             </tr>
@@ -35,6 +33,9 @@
                 </td>
                 <td class="fill">
                     <input type="email" name="email-user" id="email-user" value="{{  $customer->email }}" readonly>
+                </td>
+                <td class="fill">
+                    <input type="text" name="address-user" id="address-user" value="{{  $customer->address }}" readonly>
                 </td>
                 <td class="fill">
                     <button class="crud-btn edit-user">Edit</button>
