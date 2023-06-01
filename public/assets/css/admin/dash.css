@@ -1,0 +1,50 @@
+.main-body {
+    width: 100%;
+    padding: 6rem;
+    margin-top: 100px;
+    left: 50%;
+}
+
+.container{
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.sub-container{
+    border-radius: 3rem;
+    text-align: center;
+    padding: 2rem 4rem;
+    position: relative;
+    background-color: #FAEDED;
+}
+
+.title{
+    font-size: 40px;
+    font-weight: 800;
+    color: #291720;
+}
+
+.isi{
+    font-size: 4rem;
+    font-weight: 600;
+    color: #D90368;
+    bottom: 0;
+}
+.bottom-btn{
+    width: auto;
+    height: auto;
+    padding: 2rem 3rem;
+    background-color: #04A777;
+    margin-bottom: 30px;
+    font-size: 20px;
+    border-radius: 4rem;
+    color: #E6F7F2;
+}
+.bottom-btn:hover{
+    background-color: #D90368;
+    color: #E6F7F2;
+}

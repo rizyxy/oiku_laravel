@@ -32,7 +32,7 @@
                     <h3>ID product : <span class="cart-product-id">#AA001</span></h3>
                 </div>
                 <div class="cart-price">Rp125000</div>
-                <input type="number" min="1" value="1" class="cart-quantity">
+                <input type="number" min="1" value="1" class="cart-quantity" readonly>
             </div>
             <div class="decision">
                 <button class="acc-cart">Accept</button>
@@ -65,7 +65,7 @@
                     <h3>ID product : <span class="cart-product-id">#AA002</span></h3>
                 </div>
                 <div class="cart-price">Rp130000</div>
-                <input type="number" min="1" value="1" class="cart-quantity">
+                <input type="number" min="1" value="1" class="cart-quantity" readonly>
             </div>
             <div class="decision">
                 <button class="acc-cart">Accept</button>
@@ -81,7 +81,7 @@
                     <h3>ID product : <span class="cart-product-id">#AA001</span></h3>
                 </div>
                 <div class="cart-price">Rp125000</div>
-                <input type="number" min="1" value="1" class="cart-quantity">
+                <input type="number" min="1" value="1" class="cart-quantity" readonly>
             </div>
             <div class="decision">
                 <button class="acc-cart">Accept</button>

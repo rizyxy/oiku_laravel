@@ -1,62 +1,42 @@
 @extends('layout.consignor')
 
 @section('css')
-<link rel="stylesheet" href="{!! asset('assets/css/consignor/product.css') !!}">
+    <link rel="stylesheet" href="{!! asset('assets/css/consignor/dash.css') !!}">
 @endsection
 
 @section('content')
-<section class="main-body">
-    <div class="heading row">
-        <h4>Products</h4>
-        <a href="/consignor/add-product">Add Product</a>
-    </div>
-    <div class="small-container cartpage">
-        <table>
-            <tr>
-                <th >Id Product</th>
-                <th >Added Time</th>
-                <th >Image Product</th>
-                <th >Name Product</th>
-                <th >Description</th>
-                <th >Price</th>
-                <th> </th>
-                <th> </th>
-            </tr>
+    <section class="main-body">
+        <div class="container">
+            <div class="sub-container">
+                <h1 class="title">TOTAL PRODUK</h1>
+                <p class="isi">2</p> {{-- Count Produk Consignor --}}
+            </div>
+            <div class="sub-container">
+                <h1 class="title">TOTAL PENJUALAN</h1>
+                <p class="isi">10</p> {{-- Count Penjualan by Item Consignor --}}
+            </div>
+            <div class="sub-container">
+                <h1 class="title">TOTAL PENDAPATAN</h1>
+                <p class="isi">Rp1.200.000</p> {{-- Count Total Pendapatan dari penjualan Item Consignor --}}
+            </div>
+        </div>
+
+    </section>
+    <section class="catalog" id="catalog">
+        <div class="heading">
+            <h1>YOUR PRODUCT</h1>
+        </div>
+        <div class="box-container">
             @foreach ($products as $product)
-            <tr>
-                <td>
-                    <input type="text" class="id-product" value="{{ $product->id }}" readonly>
-                </td>
-                <td >
-                    <input type="datetime" class="added-time" value="{{ $product->timestamps }}" readonly>
-                </td>
-                <td>
-                    <input type="image" class="image-product" readonly src="{{ asset('storage/'.$product->product_image) }}">
-                </td>
-                <td >
-                    <input type="text" class="name-product" value="{{ $product->product_name }}" readonly>
-                </td>
-                <td >
-                    <input type="text" class="desc-product" value="{{ $product->product_desc }}" readonly>
-                </td>
-                <td class="price-product">
-                    <input type="tel" class="price-product" value="Rp {{ $product->product_price }}" readonly>
-                </td>
-                <td>
-                    <a href="/consignor/edit-product/{{ $product->id }}" class="crud-btn edit-user">Edit</a>
-                </td>
-                <td>
-                    <form action="/consignor/delete/{{ $product->id }}" method="POST">
-                        @method('delete')
-                        @csrf
-                        <button class="crud-btn del-user">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            <hr>
+                <div class="box">
+                    <img src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->product_name }}" class="product-img">
+                    <h2 class="product-title">{{ $product->product_name }}</h2>
+                    <p>{{ $product->product_desc }}</p>
+                    <span class="price">Rp {{ $product->product_price }}</span>
+                </div>
             @endforeach
-        </table>
-    </div>
-</section>
-<br>
+        </div>
+        <a href="/consignor/product"><button class="bottom-btn">Manage Your Product</button></a>
+    </section>
+    <br>
 @endsection

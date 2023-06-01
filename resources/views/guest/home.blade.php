@@ -13,24 +13,21 @@
             <img src="{{ asset('assets/images/various-cakes-supermarket-shelves-sale.jpg') }}" alt="Cake shelves">
         </div>
     </section>
-    <br>
-
-    <section class="home">
+    <section class="home" style="padding-bottom: 60px;">
         <div class="content-const">
             <h1>Interested in becoming a consignor?</h1>
             <p>Become a consignor and let us sell your cakes, get all benefits from partnership</p>
-            <a href="https://wa.link/5jgqzq" class="all-btn">Join</a>
+            <a href="https://wa.link/5jgqzq" target="_blank" class="all-btn">Join</a>
         </div>
     </section>
 
     <section class="catalog" id="catalog">
-
         <div class="heading">
             <h1>Best Seller</h1>
         </div>
 
         <div class="box-container">
-            @foreach ($products->take(3) as $product)
+            @foreach ($products->take(4) as $product)
             <div class="box">
                 <img src="{{ asset('storage/'.$product->product_image) }}"
                     alt="{{ $product->product_name }}" class="product-img">

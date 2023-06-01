@@ -3,7 +3,8 @@
         <h1>OIKU</h1>
     </div>
     <nav class="navbar">
-        <a href="/admin/home">Products</a>
+        <a href="/admin/home">Home</a>
+        <a href="/admin/product">Products</a>
         <a href="/admin/take-order">Take Order</a>
         <a href="/admin/consignor">Consignor</a>
         <a href="/admin/customer">Customer</a>
@@ -22,7 +23,7 @@
                 <h2>{{ Auth::user()->name }}</h2>
             </div>
             <hr>
-            <a href="/admin/home" class="sub-menu-link">
+            <a href="/admin/product" class="sub-menu-link">
                 <p>Manage Products</p>
                 <span>></span>
             </a>

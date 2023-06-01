@@ -18,7 +18,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #484848;
+    background-color: #FB8B24;
 }
 
 section {
@@ -47,35 +47,35 @@ html {
 
 .heading {
     text-align: center;
-    font-size: 2rem;
-    color: #484848;
+    font-size: 4rem;
     margin-top: 10rem;
     margin-bottom: 5rem;
 }
 
 .heading h1 {
     padding-bottom: 4rem;
+    color: #E70C0C;
 }
 
 .heading p {
     max-width: 60rem;
     margin: auto;
-    color: #353535;
+    color: #291720;
     font-size: 1.7rem;
 }
 
 .all-btn {
     padding: 1rem 3rem;
     font-size: 1.5rem;
-    background-color: #acacac;
+    background-color: #04A777;
     border-radius: 2.5rem;
-    color: #fff;
+    color: #E6F7F2;
 }
 
 .all-btn:hover {
     padding: 1rem 2rem;
-    color: #f7f7f7;
-    background-color: #484848;
+    color: #291720;
+    background-color: #4AF3C1;
     box-shadow: none;
     font-weight: 500;
 }
@@ -92,27 +92,27 @@ html {
     top: 0;
     right: 0%;
     left: 0;
-    background-color: #fff;
-    box-shadow: 0rem 0.5rem 1.5rem #acacac;
+    background-color: #D90368;
+    box-shadow: 0rem 0.2rem 1.2rem #291720;
 }
 
 .header .logo h1 {
     cursor: pointer;
     font-size: 40px;
+    color: #fff;
 }
 
 .header .navbar a {
     margin-left: 2rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
-    color: #484848;
+    font-weight: 600;
+    color: #fff;
 }
 
 .header .navbar a:hover {
-    color: #acacac;
+    color: #4AF3C1;
     transition: 0.5s;
-    font-size: 2rem;
-    font-weight: 500;
 }
 
 .menu-list {
@@ -144,9 +144,11 @@ html {
 }
 
 .sub-menu {
-    background: #eee;
     padding: 20px;
     margin: 10px;
+    border: 1px solid #E70C0C;
+    border-radius: 20px;
+    background-color: #f7f7f7;
 }
 
 .user-info {
@@ -156,6 +158,7 @@ html {
 
 .user-info h2 {
     font-size: 20px;
+    color: #E70C0C;
 }
 
 .user-info img {
@@ -165,7 +168,7 @@ html {
 }
 
 .sub-menu hr {
-    border: 1px solid #000;
+    border: 1px solid #E70C0C;
     height: 1px;
     width: 100%;
     margin: 15px 0 10px;
@@ -174,35 +177,38 @@ html {
 .sub-menu-link {
     display: flex;
     align-items: center;
-    color: #353535;
+    color: #AE0366;
     margin: 12px 0;
 }
 
 .sub-menu-link p {
     width: 100%;
     font-size: 18px;
+    color: #E70C0C;
+    
 }
 
 .sub-menu-link p:hover {
-    color: #858585;
+    color: #4AF3C1;
     font-weight: 500;
 }
 
 .sub-menu-link span {
     font-size: 22px;
     transition: transform 0.5s;
+    color: #E70C0C;
 }
 
 .sub-menu-link:hover span {
     transform: translateX(5px);
-    color: #858585;
+    color: #4AF3C1;
 }
 
 #menu-btn {
     padding: 1rem 1rem;
-    background-color: #eee;
+    background-color: #f7f7f7;
     font-size: 3rem;
-    color: #484848;
+    color: #D90368;
     border-radius: .5rem;
     cursor: pointer;
     display: none;
@@ -225,6 +231,7 @@ html {
 @media (max-width: 768px) {
     #menu-btn {
         display: initial;
+        
     }
 
     .header .navbar {
@@ -232,9 +239,9 @@ html {
         top: 115%;
         right: 1rem;
         width: 33rem;
-        border: 1px solid #000;
+        border: 1px solid #E70C0C;
         border-radius: 10px;
-        background-color: #fff;
+        background-color: #f7f7f7;
         transform: scale(0);
         transform-origin: top right;
     }
@@ -242,6 +249,7 @@ html {
 
     .header .navbar.active {
         transform: scale(1);
+        background-color: #f7f7f7;
     }
 
     .header .navbar a {
@@ -249,6 +257,7 @@ html {
         text-align: center;
         display: block;
         font-size: 2rem;
+        color: #E70C0C;
     }
 
     .catalog .box-container {
@@ -275,13 +284,13 @@ html {
 
 .home .box {
     flex: 1 1 45rem;
+    background-color: #FAEDED;
 }
 
 .home .box img {
     width: 100%;
     margin-top: 10rem;
     border-radius: 25px;
-    border: 1px solid #484848;
     padding: 5px;
 }
 
@@ -293,14 +302,14 @@ html {
 .home .content h1 {
     font-size: 4.5rem;
     padding-block-end: 1rem 0;
-    color: #484848;
+    color: #E70C0C;
 }
 
 .home .content p {
     font-size: 1.7rem;
     padding: 1rem 0;
     max-width: 60rem;
-    color: #353535;
+    color: #291720;
     padding-bottom: 4rem;
     text-align: left;
 }
@@ -308,7 +317,7 @@ html {
 .home .content h2 {
     font-size: 2rem;
     max-width: 60rem;
-    color: #353535;
+    color: #D90368;
     text-align: left;
 }
 
@@ -319,14 +328,14 @@ html {
 
 .home .content-const h1 {
     font-size: 4.5rem;
-    color: #484848;
+    color: #E70C0C;
     text-align: center;
 }
 
 .home .content-const p {
     font-size: 1.7rem;
     padding: 1rem 0;
-    color: #858585;
+    color: #291720;
     padding-bottom: 4rem;
     text-align: center;
 }
@@ -346,12 +355,12 @@ html {
     padding: 2rem;
     width: auto;
     position: relative;
-    background-color: #eee;
+    background-color: #FAE2E2;
 }
 
-.catalog .box:hover {
-    background-color: #fdfdf0;
-    border: 2px solid #484848;
+.catalog .box:hover{
+    background-color: #E6F7F2;
+    border: 2px solid #4AF3C1;
     padding: 10px;
     transition: 0.4s;
 }
@@ -362,10 +371,12 @@ html {
     align-items: center;
     margin: 10rem 0 0 0;
 }
-
-.row a:hover {
-    color: #acacac;
+.row a{
+    color: #D90368;
     text-decoration-line: underline;
+}
+.row a:hover {
+    color: #04A777;
 }
 
 .product-img {
@@ -380,19 +391,20 @@ html {
 .product-title {
     font-size: 2rem;
     padding: 1rem 0;
-    color: #484848;
+    color: #D90368;
 }
 
 .catalog .box p {
     font-size: 1.4rem;
     padding-bottom: 1.5rem;
-    color: #484848;
+    color: #291720;
     margin-bottom: 2rem;
 }
 
 .price {
     font-weight: 500;
     font-size: 16px;
+    color: #E70C0C;
 }
 
 .add-cart {
@@ -404,7 +416,7 @@ html {
 
 .footer {
     text-align: center;
-    background-color: #fff;
+    background-color: #FAEDED;
     display: block;
     flex: 1 0 auto;
     left: 0;
@@ -419,27 +431,27 @@ html {
     text-align: left;
 }
 
-.footer .box-container .box h3 {
+.footer .box-container .box h3{
     font-size: 2.5rem;
-    color: #484848;
+    color: #AE0366;
     padding: 1rem 0;
 }
 
-.footer .box-container .box a {
+.footer .box-container .box a{
     display: block;
     font-size: 1.5rem;
-    color: #353535;
+    color: #AE0366;
     padding: 1rem 0;
 }
 
-.footer .box-container .box a i {
+.footer .box-container .box a i{
     padding-right: 2rem;
-    color: #484848;
+    color: #04A777;
 }
 
-.footer .box-container .box a:hover i {
-    padding-right: 1rem;
-    color: #858585;
+.footer .box-container .box a:hover i{
+    padding-right:1rem;
+    color: #E70C0C;
 }
 
 .footer .credit {
@@ -448,22 +460,24 @@ html {
     margin-top: 2rem;
     text-align: center;
     font-size: 2rem;
-    color: #484848;
+    color: #291720;
     border-top: .1rem solid rgba(0, 0, 0, .1);
 }
 
-.footer .credit span {
-    color: #000000;
+.footer .credit span{
+    color: #E70C0C;
     cursor: pointer;
     font-weight: bold;
 }
 
 .crud-btn {
     padding: 10px;
+    background-color: #04A777;
+    border-radius: 3em;
+    color: #E6F7F2;
 }
 
 .crud-btn:hover {
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
+    color: #291720;
+    background-color: #4AF3C1;
 }

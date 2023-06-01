@@ -33,6 +33,20 @@
                     <input class="fill" type="text" name="email" id="email" value="{{ $user->email }}"><br>
                 </td>
             </tr>
+            <tr>
+                <td class="label"><label>Phone</label></td>
+                <td class="equals">:</td>
+                <td class="input">
+                    <input class="fill" type="text" name="phone" id="phone" value="{{ $user->phone }}" readonly><br>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label>Address</label></td>
+                <td class="equals">:</td>
+                <td class="input">
+                    <input class="fill" type="text" name="address" id="address" value="{{ $user->address }}" readonly><br>
+                </td>
+            </tr>
         </table>
         
     </form>

@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->string('product_desc')->nullable();
             $table->integer('product_price');
-
+            $table->enum('product_avail', ['Available', 'Not Available'])->default('Available');
             $table->foreign('id_consignor')->references('id')->on('users');
         });
     }

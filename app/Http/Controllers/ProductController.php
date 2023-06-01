@@ -25,13 +25,13 @@ class ProductController extends Controller
                     ]);
              
             } else if (auth()->user()->role == 'consignor') {
-                return view('consignor.home', [
-                    'title' => 'Home',
+                return view('consignor.product', [
+                    'title' => 'Product',
                     'products' => Product::all()->where('id_consignor' , '=', auth()->user()->id)
                 ]);
             } else if (auth()->user()->role == 'admin') {
-                return view('admin.home', [
-                    'title' => 'Home',
+                return view('admin.product', [
+                    'title' => 'Product',
                     'products' => Product::all()
                 ]);
             }
@@ -67,13 +67,15 @@ class ProductController extends Controller
 
         $image = $request->file('product_image');
         $path =  $image->store('product_images');
+        $data['product_avail'] = 'Available';
 
         Product::create([
             'id_consignor' => Auth::user()->id,
             'product_image' => $path,
             'product_name' => $data['product_name'],
             'product_desc' => $data['product_desc'],
-            'product_price' => $data['product_price']
+            'product_price' => $data['product_price'],
+            'product_avail' => $data['product_avail']
         ]);
 
         return redirect()->back();
@@ -116,14 +118,18 @@ class ProductController extends Controller
         $request->validate([
             'product_name' => 'required',
             'product_price' => 'required',
+            'product_desc' => 'required',
+            'product_avail' => 'required',
         ]);
 
         $data = $request->all();
 
         Product::where('id', '=', $product->id)->update([
+            'product_image' => $data['product_image'],
             'product_name' => $data['product_name'],
             'product_desc' => $data['product_desc'],
-            'product_price' => $data['product_price']
+            'product_price' => $data['product_price'],
+            'product_avail' => $data['product_avail']
         ]);
 
         return redirect()->back();

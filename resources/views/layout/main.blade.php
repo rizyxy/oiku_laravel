@@ -17,4 +17,5 @@
     @include('components.footer')
 
 </body>
+<script src="{!! asset('assets/js/customer/main.js') !!}"></script>
 </html>

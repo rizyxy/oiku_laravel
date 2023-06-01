@@ -1,7 +1,9 @@
 @extends('layout.auth')
-
+@section('css')
+<link rel="stylesheet" href="{!! asset('assets/css/auth/form.css') !!}">
+@endsection
 @section('content')
-    <div class="Container" style="height: 420px">
+    <div class="Container" >
         <h1>Login</h1>
         <form id="loginForm" method="POST" action="/login">
             @csrf

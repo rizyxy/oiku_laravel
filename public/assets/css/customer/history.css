@@ -16,19 +16,19 @@
     justify-content: space-between;
     align-items: center;
     margin: 10rem 0 0 0;
-    color: #000;
     font-size: 30px;
 }
-
-.row a{
-    font-size: 18px;
+h4{
+    color: #E70C0C;
 }
-.row a:hover{
-    color: #858585;
+h2{
+    color: #D90368;
 }
-
+h3{
+    color: #291720;
+}
 table {
-    background: #fff;
+
     padding: 1rem;
     text-align: left;
     border-radius: 10px;
@@ -40,7 +40,6 @@ table td,
 th {
     padding: 0.2rem 0.8rem;
     text-align: center;
-    border: 1px solid rgb(186, 186, 186);
 }
 
 table th {
@@ -49,7 +48,6 @@ table th {
 
 table td {
     font-size: 13px;
-    color: rgb(100, 100, 100);
 }
 
 .cartinfo h2, h3 {
@@ -58,22 +56,23 @@ table td {
 
 .cartpage{
     margin: 5px auto;
-    background-color: #f7f7f7;
 }
 
 .cartpage table{
     border-collapse: collapse;
-    background-color: transparent;
+    background-color: #FAEDED;
 }
 
 .cartpage th{
     padding: 5px;
     color: #f7f7f7;
-    background-color: #353535;
+    background-color: #D90368;
 }
 
 .cartpage td{
     padding: 10px 5px;
+    border:1px solid #cc8e8e;
+    border-style:dashed;
 }
 
 .cartinfo {

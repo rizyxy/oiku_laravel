@@ -73,6 +73,12 @@ Route::prefix('customer')->middleware(['customer'])->group(function() {
 //Consignor
 Route::prefix('consignor')->middleware(['consignor'])->group(function() {
 
+    Route::get('/home', function() {
+        return view('consignor.home', [
+            'title' => 'Home',
+            'products' => Product::all()->where('id_consignor' , '=', auth()->user()->id)
+        ]);
+    });
     Route::get('/product', [ProductController::class, 'index']);
     Route::get('/transaction', [OrderController::class, 'index']);
     Route::get('/add-product', [ProductController::class, 'create']);
@@ -92,7 +98,13 @@ Route::prefix('consignor')->middleware(['consignor'])->group(function() {
 //Admin
 Route::prefix('admin')->middleware(['admin'])->group(function() {
     
-    Route::get('/home', [ProductController::class, 'index']);
+    Route::get('/home', function() {
+        return view('admin.home', [
+            'title' => 'Home',
+            'products' => Product::all()
+        ]);
+    });
+    Route::get('/product', [ProductController::class, 'index']);
     Route::get('/transaction', [OrderController::class, 'index']);
     Route::get('/take-order', function() {
         return view('admin.take_order', [

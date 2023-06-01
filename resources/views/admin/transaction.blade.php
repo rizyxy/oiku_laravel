@@ -1,14 +1,13 @@
 @extends('layout.admin')
 
 @section('css')
-<link rel="stylesheet" href="{!! asset('assets/css/consignor/transaction.css') !!}">
+<link rel="stylesheet" href="{!! asset('assets/css/admin/transaction.css') !!}">
 @endsection
 
 @section('content')
 <section class="main-body">
     <div class="heading row">
         <h4>Transaction</h4>
-        <a href="#">Manage Transaction</a>
     </div>
     <div class="small-container cartpage">
         <table>

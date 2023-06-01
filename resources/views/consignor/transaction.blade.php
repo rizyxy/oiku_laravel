@@ -8,7 +8,6 @@
 <section class="main-body">
     <div class="heading row">
         <h4>Transaction</h4>
-        <a href="#">Manage Transactions</a>
     </div>
     <div class="small-container cartpage">
         <table>

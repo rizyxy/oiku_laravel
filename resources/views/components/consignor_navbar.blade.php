@@ -3,6 +3,7 @@
         <h1>OIKU</h1>
     </div>
     <nav class="navbar">
+        <a href="/consignor/home">Home</a>
         <a href="/consignor/product">Your Product</a>
         <a href="/consignor/transaction">Transaction</a>
     </nav>

@@ -9,14 +9,21 @@
     padding: 6rem;
     margin-top: 10px;
 }
-
+h4{
+    color: #E70C0C;
+}
+h2{
+    color: #D90368;
+}
+h3{
+    color: #291720;
+}
 .row {
     top: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10rem 0 0 0;
-    color: #000;
     font-size: 30px;
 }
 
@@ -24,11 +31,10 @@
     font-size: 18px;
 }
 .row a:hover{
-    color: #858585;
+    color: #04A777;
 }
 
 table {
-    background: #fff;
     padding: 1rem;
     text-align: center;
     border-radius: 10px;
@@ -48,8 +54,6 @@ table th {
 
 table td {
     font-size: 13px;
-    color: rgb(100, 100, 100);
-    border-bottom:1px solid #000;
 }
 
 .cartpage{
@@ -59,17 +63,19 @@ table td {
 
 .cartpage table{
     border-collapse: collapse;
-    background-color: transparent;
+    background-color: #FAEDED;
+    border: 1px solid #cc8e8e;
 }
 
 .cartpage th{
     padding: 5px;
     color: #f7f7f7;
-    background-color: #353535;
+    background-color: #D90368;
 }
 
 .cartpage td{
     padding: 10px 5px;
+    border-bottom:1px solid #cc8e8e;
 }
 
 .image-product{

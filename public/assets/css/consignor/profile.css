@@ -2,13 +2,16 @@
     width: 100%;
     text-align: center;
     padding-left: 50px;
-    background-color: #fefefe;
     height: auto;
     padding: 5rem;
+    background-color: #FAEDED;
+    border-radius: 25px;
  }
- 
+ h3{
+    color: #E70C0C;
+ }
  .profil .label{
-     width: 30%;
+     width: 40%;
      text-align: right;
  }
  
@@ -24,21 +27,26 @@
      font-size: 16px;
  }
  .profil .fill{
-    padding: 1rem;
+    padding: 1rem 2rem;
+    background-color: #f7f7f7;
+    border-radius: 25px;
  }
 
 .prof-img{
     margin-bottom: 3rem;
 }
+
 .edit-prof{
     margin-top: 2%;
     margin-bottom: 2%;
-    padding: 5px;
-    background-color: black;
-    color: white;
+    padding: 1rem 2rem;
+    background-color: #04A777;
+    color: #E6F7F2;
     font-size: 14px;
+    border-radius: 15px;
+    font-weight: 600;
 }
 .edit-prof:hover{
-    background-color: #b8b8b8;
-    color: rgb(255, 255, 255);
+    background-color: #4AF3C1;
+    color: #291720;
 }

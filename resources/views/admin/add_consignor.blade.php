@@ -12,6 +12,7 @@
         <input type ="text" name="name" placeholder="Consignor Name" id="name" required><br>
         <input type ="email" name="email" placeholder="Email" id="email" required><br>
         <input type ="tel" minLength="9" maxlength="13" name="Phone" id="phone" placeholder="Phone Number" required><br>
+        <input type ="text" name="address" placeholder="Address" id="address" required><br>
         <input type ="password" name="password" placeholder="Password" id="password" required><br>
         <input type ="password" name="confirm-pass" placeholder="Confirm Password" id="confirm-pass" required><br>
         <small>At least 8 characters, better use symbols and numbers.</small>

@@ -50,6 +50,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
+            'address' => 'required',
             'password' => 'required|min:8'
         ]);
 
@@ -59,6 +60,7 @@ class UserController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'address' => $data['address'],
             'role' => 'customer',
             'password' => Hash::make($data['password'])
         ]);
@@ -71,6 +73,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
+            'address' => 'required',
             'password' => 'required|min:8'
         ]);
 
@@ -80,6 +83,7 @@ class UserController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'address' => $data['address'],
             'role' => 'consignor',
             'password' => Hash::make($data['password'])
         ]);
@@ -100,14 +104,14 @@ class UserController extends Controller
             if (auth()->user()->role == 'admin') {
                 return redirect('/admin/home');
             } else if (auth()->user()->role == 'consignor') {
-                return redirect('/consignor/product');
+                return redirect('/consignor/home');
             } else if (auth()->user()->role == 'customer') {
                 return redirect('/customer/home');
             }
 
         }
 
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function show() {
@@ -145,6 +149,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
+            'address' => 'required',
             'password' => 'required',
         ]);
 
@@ -155,6 +160,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
+            'address' => 'required',
             'password' => 'required',
         ]);
 

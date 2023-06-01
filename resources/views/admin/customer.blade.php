@@ -1,7 +1,7 @@
 @extends('layout.admin')
 
 @section('css')
-<link rel="stylesheet" href="{!! asset('assets/css/admin/consignor.css') !!}">
+<link rel="stylesheet" href="{!! asset('assets/css/admin/tableing.css') !!}">
 @endsection
 
 @section('content')
