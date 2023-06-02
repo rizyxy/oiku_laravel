@@ -26,14 +26,14 @@
                 <h3>{{ $detail->product->id }}</h3>
             </td>
             <td class="order-time">
-                <time datetime="{{ $order->timestamps }}">value</time>
+                <time datetime="{{ $order->timestamps }}">{{ $order->created_at }}</time>
             </td>
             <td>
                 <div class="cartinfo">
                     <img src="{{ asset('storage/'.$detail->product->product_image) }}" alt="Blueberry Cake">
                     <div class="detail-product">
-                        <h2>{{ $detail->product_name }}</h2>
-                        <h3>Rp {{ $detail->product_price }}</h3>
+                        <h2>{{ $detail->product->product_name }}</h2>
+                        <h3>Rp {{ $detail->product->product_price }}</h3>
                     </div>
                 </div>
             </td>
