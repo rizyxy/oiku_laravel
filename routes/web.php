@@ -65,6 +65,8 @@ Route::prefix('customer')->middleware(['customer'])->group(function() {
     Route::post('/cart', [CartController::class, 'add']);
     Route::post('/cart/buy', [OrderController::class, 'store']);
     Route::put('/cart', [CartController::class, 'update']);
+    Route::put('/cart/minus', [CartController::class, 'minus']);
+    Route::put('/cart/plus', [CartController::class, 'plus']);
     Route::delete('/cart', [CartController::class, 'delete']);
 
 });

@@ -18,15 +18,22 @@
                         <div class="detail-box">
                             <h2 class="cart-product-title">{{ $item['product']->product_name }}</h2>
                             <div class="cart-price">{{ $item['product']->product_price }}</div>
-                            <form action="/customer/cart" method="post">
-                                @method('put')
-                                @csrf
-                                <input type="text" name="id" value="{{ $item['product']->id }}" hidden>
-                                <div class="quantity-container">
-                                    <button class="quantity-btn minus-btn" onclick="changeQuantity(-1)">-</button>
-                                    <input type="number" name="quantity" id="quantity" min="1" value="{{ $item['quantity'] }}" class="cart-quantity" readonly>
-                                    <button class="quantity-btn plus-btn" onclick="changeQuantity(1)">+</button>
-                                </div>
+                            <input type="text" name="id" value="{{ $item['product']->id }}" hidden>
+                            <div class="quantity-container">
+                                <form action="/customer/cart/minus" method="POST">
+                                    @csrf
+                                    @method('put')
+                                    <input type="text" name="id" value="{{ $item['product']->id }}" hidden>
+                                    <button class="quantity-btn minus-btn" type="submit"">-</button>
+                                </form>
+                                <input type="number" name="quantity" id="quantity" min="1" value="{{ $item['quantity'] }}" class="cart-quantity" readonly>
+                                <form action="/customer/cart/plus" method="POST">
+                                    @csrf
+                                    @method('put')
+                                    <input type="text" name="id" value="{{ $item['product']->id }}" hidden>
+                                    <button class="quantity-btn plus-btn" type="submit">+</button>
+                                </form>
+                            </div>
                             </form>
                             <form action="/customer/cart" method="post">
                                 @csrf

@@ -51,6 +51,28 @@ class CartController extends Controller
         return redirect('/customer/order');
     }
 
+    public function plus(Request $request)
+    {
+        $cart = session()->get('cart');
+
+        $id = $request->get('id');
+        $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
+
+        session()->put('cart', $cart);
+        return redirect('/customer/order');
+    }
+
+    public function minus(Request $request)
+    {
+        $cart = session()->get('cart');
+
+        $id = $request->get('id');
+        $cart[$id]['quantity'] = $cart[$id]['quantity'] - 1;
+
+        session()->put('cart', $cart);
+        return redirect('/customer/order');
+    }
+
     public function delete(Request $request) {
 
         $cart = session()->get('cart');
