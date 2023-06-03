@@ -15,7 +15,8 @@
                 <th>Id Transaction</th>
                 <th>Id Customer</th>
                 <th>Order Time</th>
-                <th>Detail Products</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
                 <th>Total Price</th>
             </tr>
             @foreach ($orders as $order)
@@ -27,21 +28,16 @@
                     <h3>{{ $order->id_customer }}</h3>
                 </td>
                 <td class="order-time">
+                    <h3>{{ $order->created_at }}</h3>
                 </td>
                 <td>
-                    @foreach ($orders->orderDetails as $detail)
-                        @if ($detail->product->id_consignor === auth()->id())
-                        <tr>
-                            <td>{{ $detail->product->name }}</td>
-                            <td>{{ $detail->product->price }}</td>
-                            <td>{{ $detail->quantity }}</td>
-                            <td>{{ $detail->product->price * $detail->quantity }}</td>
-                        </tr>
-                        @endif
-                    @endforeach
+                    <h3>{{ $order->product_name }}</h3>
+                </td>
+                <td>
+                    <h3>{{ $order->quantity }}</h3>
                 </td>
                 <td class="price-product">
-                    <h3>Rp260000</h3>
+                    <h3>Rp {{ $order->subtotal }}</h3>
                 </td>
             </tr>
             <hr>

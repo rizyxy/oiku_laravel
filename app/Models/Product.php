@@ -18,4 +18,12 @@ class Product extends Model
         'product_avail'
     ];
 
+    public function orderDetails() {
+        return $this->hasMany(OrderDetail::class);
+    }
+
+    public function consignor() {
+        return $this->belongsTo(User::class, 'id_consignor');
+    }
+
 }

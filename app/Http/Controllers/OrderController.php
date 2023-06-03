@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
@@ -31,7 +32,10 @@ class OrderController extends Controller
         } else if(auth()->user()->role == 'consignor') {
             return view('consignor.transaction', [
                 'title' => 'Transaction',
-                'orders' => Order::with('orderDetails.product')
+                'orders' => Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
+                                ->join('products', 'order_details.product_id', '=', 'products.id')
+                                ->where('products.id_consignor', '=', auth()->user()->id)
+                                ->get()->sortBy('id')
             ]);
         }
     }
