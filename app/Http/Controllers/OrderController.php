@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 
 class OrderController extends Controller
 {
@@ -30,13 +31,7 @@ class OrderController extends Controller
         } else if(auth()->user()->role == 'consignor') {
             return view('consignor.transaction', [
                 'title' => 'Transaction',
-                'orders' => Order::with(['orderDetails' => function ($query) {
-                    $query->whereHas('product', function ($query) {
-                        $query->where('id_consignor', auth()->id());
-                    })->with(['product' => function ($query) {
-                        $query->where('id_consignor', auth()->id());
-                    }]);
-                }])->get()
+                'orders' => Order::with('orderDetails.product')
             ]);
         }
     }

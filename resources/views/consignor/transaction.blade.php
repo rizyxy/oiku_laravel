@@ -27,11 +27,10 @@
                     <h3>{{ $order->id_customer }}</h3>
                 </td>
                 <td class="order-time">
-                    <time datetime="2023-03-25 10:00">{{ $order->timestamps }}</time>
                 </td>
                 <td>
                     @foreach ($orders->orderDetails as $detail)
-                        @if ($detail->product->user_id === auth()->id())
+                        @if ($detail->product->id_consignor === auth()->id())
                         <tr>
                             <td>{{ $detail->product->name }}</td>
                             <td>{{ $detail->product->price }}</td>
