@@ -39,7 +39,6 @@ table {
     text-align: center;
     border-radius: 10px;
     width: 100%;
-    
 }
 
 table td,
@@ -56,24 +55,24 @@ table td {
     font-size: 13px;
 }
 
-.cartpage{
+.cartpage {
     margin: 5px auto;
-    background-color: #fff;
+    overflow: auto;
+    white-space: nowrap;
 }
 
-.cartpage table{
+.cartpage table {
     border-collapse: collapse;
     background-color: #FAEDED;
-    border: 1px solid #cc8e8e;
 }
 
-.cartpage th{
+.cartpage th {
     padding: 5px;
     color: #f7f7f7;
     background-color: #D90368;
 }
 
-.cartpage td{
+.cartpage td {
     padding: 10px 5px;
     border-bottom:1px solid #cc8e8e;
 }
@@ -89,6 +88,7 @@ table td {
 input{
     font-size: 14px;
     background-color: transparent;
+    text-align: center;
 }
 .desc-product{
     font-size: 12px;

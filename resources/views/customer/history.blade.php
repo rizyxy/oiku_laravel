@@ -13,8 +13,8 @@
             <table>
                 <tr>
                     <th>Id Order</th>
-                    <th>Id Product</th>
                     <th>Order Time</th>
+                    <th>Id Product</th>
                     <th>Detail Products</th>
                     <th>Amount</th>
                     <th>Price</th>
@@ -28,13 +28,14 @@
                                 <td class="id-order" rowspan="{{ $rowCount }}">
                                     <h3>{{ $detail->order_id }}</h3>
                                 </td>
+                                <td class="order-time" rowspan="{{ $rowCount }}">
+                                    <h3>{{ $order->created_at }}</h3>
+                               </td>
                             @endif
                             <td class="id-product">
                                 <h3>{{ $detail->product->id }}</h3>
                             </td>
-                            <td class="order-time">
-                                <time datetime="{{ $order->timestamps }}">{{ $order->timestamps }}</time>
-                            </td>
+                            
                             <td>
                                 <div class="cartinfo">
                                     <img src="{{ asset('storage/' . $detail->product->product_image) }}"

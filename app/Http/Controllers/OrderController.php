@@ -35,7 +35,7 @@ class OrderController extends Controller
                 'orders' => Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
                                 ->join('products', 'order_details.product_id', '=', 'products.id')
                                 ->where('products.id_consignor', '=', auth()->user()->id)
-                                ->get()->sortBy('id')
+                                ->get()
             ]);
         }
     }

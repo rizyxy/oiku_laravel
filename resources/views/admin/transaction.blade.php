@@ -38,15 +38,7 @@
                             <small>Quantity : 1</small>
                         </div>
                     </div>
-                    <div class="cartinfo">
-                        <img src="../images/Matcha and Mint.jpg" alt="Matcha and Min Cake">
-                        <div class="detail-product">
-                            <h2>Matcha and Min Cake</h2>
-                            <h3 class="id-product">#AA004</h3>
-                            <h3>Rp150000</h3>
-                            <small>Quantity : 1</small>
-                        </div>
-                    </div>
+                    
                 </td>
                 <td class="price-product">
                     <h3>Rp260000</h3>

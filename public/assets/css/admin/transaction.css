@@ -50,29 +50,33 @@ table td {
     font-size: 13px;
 }
 
-.cartinfo h2, h3 {
+.cartinfo h2{
+    font-weight: 600;
+}
+.detail-product h3{
     font-weight: 500;
 }
 
-.cartpage{
+.cartpage {
     margin: 5px auto;
+    overflow: auto;
+    white-space: nowrap;
 }
 
-.cartpage table{
+.cartpage table {
     border-collapse: collapse;
     background-color: #FAEDED;
 }
 
-.cartpage th{
+.cartpage th {
     padding: 5px;
     color: #f7f7f7;
     background-color: #D90368;
 }
 
-.cartpage td{
+.cartpage td {
     padding: 10px 5px;
-    border:1px solid #cc8e8e;
-    border-style:dashed;
+    border: 1px dashed #cc8e8e;
 }
 
 .cartinfo {

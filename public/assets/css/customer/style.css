@@ -117,9 +117,9 @@ html {
 }
 #menu-btn{
     padding: 1rem 1rem;
-    background-color: #eee;
+    background-color: #f7f7f7;
     font-size: 3rem;
-    color: #484848;
+    color: #D90368;
     border-radius: .5rem;
     cursor: pointer;
     display: none;
@@ -147,9 +147,9 @@ html {
         top: 115%;
         right: 1rem;
         width: 33rem;
-        border: 1px solid #000;
+        border: 1px solid #E70C0C;
         border-radius: 10px;
-        background-color: #fff;
+        background-color: #f7f7f7;
         transform: scale(0);
         transform-origin: top right;
     }
@@ -157,6 +157,7 @@ html {
 
     .header .navbar.active{
         transform: scale(1);
+        background-color: #f7f7f7;
     }
 
     .header .navbar a{
@@ -164,6 +165,7 @@ html {
         text-align: center;
         display: block;
         font-size: 2rem;
+        color: #E70C0C;
     }
     .catalog .box-container{
         gap: 10rem;
