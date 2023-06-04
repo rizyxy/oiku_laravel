@@ -17,7 +17,7 @@ class OrderDetail extends Model
     ];
 
     public function parentOrder() {
-        $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class);
     }
 
     public function product() {

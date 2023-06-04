@@ -17,42 +17,55 @@
                     <th>Order Time</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
+                    <th>Subtotal</th>
+                    <th>Total</th>
                 </tr>
+                @php $processedOrderIds = []; @endphp
                 @foreach ($orders as $order)
-                    @php $rowCount = count($order->orderDetails); @endphp
-                    @foreach ($order->orderDetails as $index => $detail)
-                        <tr>
-                            @if ($index == 0)
-                                <td class="id-transaction" rowspan="{{ $rowCount }}">
-                                    <h3>{{ $order->order_id }}</h3>
+                    @php
+                        $consignorProducts = $order->orderDetails->filter(function ($detail) {
+                            return $detail->product->id_consignor === auth()->user()->id;
+                        });
+                        $rowCount = count($consignorProducts);
+                    @endphp
+
+                    @if ($rowCount > 0 && !in_array($order->id, $processedOrderIds))
+                        @php
+                            $processedOrderIds[] = $order->id;
+                            $rowIndex = 0;
+                        @endphp
+                        @foreach ($consignorProducts as $index => $detail)
+                            <tr class="fill">
+                                @if ($rowIndex === 0)
+                                    <td class="id-transaction" rowspan="{{ $rowCount }}">
+                                        <h3>{{ $order->id }}</h3>
+                                    </td>
+                                    <td class="id-customer" rowspan="{{ $rowCount }}">
+                                        <h3>{{ $order->id_customer }}</h3>
+                                    </td>
+                                    <td class="order-time" rowspan="{{ $rowCount }}">
+                                        <h3>{{ $detail->created_at }}</h3>
+                                    </td>
+                                @endif
+                                <td class="name-product">
+                                    <h3>{{ $detail->product->product_name }}</h3>
                                 </td>
-                                <td class="id-customer" rowspan="{{ $rowCount }}">
-                                    <h3>{{ $order->id_customer }}</h3>
+                                <td class="quantity">
+                                    <h3>{{ $detail->quantity }}</h3>
                                 </td>
-                                <td class="order-time" rowspan="{{ $rowCount }}">
-                                    <h3>{{ $order->created_at }}</h3>
+                                <td class="subtotal">
+                                    <h3>Rp {{ $detail->subtotal }}</h3>
                                 </td>
-                            @endif
-                            <td class="name-product">
-                                <h3>{{ $detail->product->product_name }}</h3>
-                            </td>
-                            <td class="quantity">
-                                <h3>{{ $detail->quantity }}</h3>
-                            </td>
-                            <td class="price-product">
-                                <h3>Rp {{ $detail->subtotal }}</h3>
-                            </td>
-                            @if ($index === 0)
-                                <td class="price-total" rowspan="{{ $rowCount }}">
-                                    <h3>Rp {{ $order->total }}</h3>
-                                </td>
-                            @endif
-                        </tr>
-                        <hr>
+                                @if ($rowIndex === 0)
+                                    <td class="total" rowspan="{{ $rowCount }}">
+                                        <h3>Rp {{ $order->total }}</h3>
+                                    </td>
+                                @endif
+                            </tr>
+                            @php $rowIndex++; @endphp
                         @endforeach
-                    @endforeach
+                    @endif
+                @endforeach
             </table>
         </div>
     </section>

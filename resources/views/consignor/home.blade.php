@@ -3,17 +3,16 @@
 @section('css')
     <link rel="stylesheet" href="{!! asset('assets/css/consignor/dash.css') !!}">
 @endsection
-
 @section('content')
     <section class="main-body">
         <div class="container">
             <div class="sub-container">
                 <h1 class="title">TOTAL PRODUK</h1>
-                <p class="isi">2</p> {{-- Count Produk Consignor --}}
+                <p class="isi">{{ $products->count() }}</p> {{-- Count Produk Consignor --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENJUALAN</h1>
-                <p class="isi">10</p> {{-- Count Penjualan by Item Consignor --}}
+                <p class="isi">{{ $orders->count() }}</p> {{-- Count Penjualan by Item Consignor --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
