@@ -12,7 +12,7 @@
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENJUALAN</h1>
-                <p class="isi">{{ $orders->count() }}</p> {{-- Count Penjualan by Item Consignor --}}
+                <p class="isi">12</p> {{-- Count Penjualan by Item Consignor --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
