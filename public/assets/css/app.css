@@ -71,6 +71,7 @@ html{
     background-color: #04A777;
     border-radius: 2.5rem;
     color: #E6F7F2;
+    margin: 2rem 2rem;
 }
 
 .all-btn:hover{
@@ -192,7 +193,7 @@ html{
 }
 
 .home .box{
-    width: 65rem;
+    width: 100%;
     grid: 1 1;
     height: auto;
     display: grid;
@@ -281,7 +282,7 @@ html{
 .catalog .box{
     border-radius: 2.5rem;
     text-align: center;
-    padding: 15px;
+    padding: 20px;
     width: auto;
     position: relative;
     background-color: #FAE2E2;
@@ -321,9 +322,10 @@ html{
 }
 .add-cart{
     cursor: pointer;
-    margin: 10px;
+    margin-top: 10px;
     right: 0;
     bottom: 0;
+    display: block;
 }
 
 .footer {

@@ -57,6 +57,7 @@ class UserController extends Controller
         $data = $request->all();
 
         User::create([
+            'profile_pic' => $data['profile_pic'],
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -80,6 +81,7 @@ class UserController extends Controller
         $data = $request->all();
 
         User::create([
+            'profile_pic' => $data['profile_pic'],
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -145,7 +147,7 @@ class UserController extends Controller
     public function update(Request $request, User $user) {
 
         $request->validate([
-            'image' => 'required',
+            'profile_pic' => 'required',
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
@@ -156,7 +158,7 @@ class UserController extends Controller
         $data = $request->all();
 
         User::where('id', '=', $user->id)->update([
-            'image' => 'required',
+            'profile_pic' => 'required',
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
@@ -176,4 +178,6 @@ class UserController extends Controller
         return redirect('/');
 
     }
+
+    
 }
