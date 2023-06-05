@@ -193,7 +193,7 @@ html{
 }
 
 .home .box{
-    width: 100%;
+    width: 65rem;
     grid: 1 1;
     height: auto;
     display: grid;
