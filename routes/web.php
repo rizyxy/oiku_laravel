@@ -49,18 +49,13 @@ Route::prefix('customer')->middleware(['customer'])->group(function() {
             'products' => Product::take(4)->get()
         ]);
     });
-    Route::get('/catalogCust', function() {
-        return view('customer.catalog', [
-            'title' => 'Catalog',
-            'products' => Product::all()
-        ]);
-    });
+    Route::get('/catalog', [ProductController::class, 'index']);
     Route::get('/profile', [UserController::class, 'show']);
     Route::get('/edit-profile', [UserController::class, 'edit']);
     Route::get('/order', [CartController::class, 'index']);
     Route::get('/history', [OrderController::class, 'index']);
 
-    Route::put('/update-profile', [UserController::class, 'update']);
+    Route::put('/update-profile/{user:id}', [UserController::class, 'update']);
 
     //Cart
     Route::post('/cart', [CartController::class, 'add']);
@@ -97,7 +92,8 @@ Route::prefix('consignor')->middleware(['consignor'])->group(function() {
 
     Route::post('/add-product/store-product', [ProductController::class, 'store']);
 
-    Route::put('/add-product/update-product', [ProductController::class, 'update']);
+    Route::put('/add-product/update-product/{product:id}', [ProductController::class, 'update']);
+    Route::put('/update-profile/{user:id}', [UserController::class, 'update']);
 
     Route::delete('/delete/{product:id}', [ProductController::class, 'destroy']);
 

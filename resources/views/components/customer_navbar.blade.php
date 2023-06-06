@@ -4,7 +4,7 @@
     </div>
     <nav class="navbar">
         <a href="/customer/home">Home</a>
-        <a href="/customer/catalogCust">Products</a>
+        <a href="/customer/catalog">Products</a>
         <a href="/customer/order">Order</a>
         <a href="/customer/history">History Order</a>
     </nav>

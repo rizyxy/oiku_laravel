@@ -152,23 +152,20 @@ class UserController extends Controller
     public function update(Request $request, User $user) {
 
         $request->validate([
-            'profile_pic' => 'required',
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'address' => 'required',
-            'password' => 'required',
         ]);
 
         $data = $request->all();
 
         User::where('id', '=', $user->id)->update([
-            'profile_pic' => 'required',
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'password' => 'required',
+            'profile_pic' => $data['profile_pic'] ?? $user->profile_pic,
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
         ]);
 
         return redirect()->back();

@@ -19,9 +19,9 @@ class ProductController extends Controller
 
         if (auth()->user() != null) {
             if (auth()->user()->role == 'customer') {
-                    return view('customer.home', [
+                    return view('customer.catalog', [
                         'title' => 'Home',
-                        'products' => Product::all()->where('id_customer' , '=', auth()->user()->id)
+                        'products' => Product::where('product_avail', 'Available')->get()
                     ]);
              
             } else if (auth()->user()->role == 'consignor') {
@@ -125,14 +125,14 @@ class ProductController extends Controller
         $data = $request->all();
 
         Product::where('id', '=', $product->id)->update([
-            'product_image' => $data['product_image'],
+            'product_image' => $data['product_image'] ?? $product->product_image,
             'product_name' => $data['product_name'],
             'product_desc' => $data['product_desc'],
             'product_price' => $data['product_price'],
             'product_avail' => $data['product_avail']
         ]);
 
-        return redirect()->back();
+        return redirect('/consignor/product');
     }
 
     /**
