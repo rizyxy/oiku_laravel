@@ -41,47 +41,71 @@ class CartController extends Controller
     }
 
     public function update(Request $request)
-    {
-        $cart = session()->get('cart');
+{
+    $cart = session()->get('cart');
 
-        $id = $request->get('id');
-        $cart[$id]['quantity'] = $request->get('quantity');
+    $id = $request->get('id');
+    $quantity = $request->get('quantity');
 
+    if ($quantity > 0) {
+        $cart[$id]['quantity'] = $quantity;
         session()->put('cart', $cart);
-        return redirect('/customer/order');
-    }
-
-    public function plus(Request $request)
-    {
-        $cart = session()->get('cart');
-
-        $id = $request->get('id');
-        $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
-
+    } else {
+        unset($cart[$id]);
         session()->put('cart', $cart);
-        return redirect('/customer/order');
     }
 
-    public function minus(Request $request)
-    {
-        $cart = session()->get('cart');
+    return redirect('/customer/order');
+}
 
-        $id = $request->get('id');
-        $cart[$id]['quantity'] = $cart[$id]['quantity'] - 1;
+public function plus(Request $request)
+{
+    $cart = session()->get('cart');
 
+    $id = $request->get('id');
+    $quantity = $cart[$id]['quantity'] + 1;
+
+    if ($quantity > 0) {
+        $cart[$id]['quantity'] = $quantity;
         session()->put('cart', $cart);
-        return redirect('/customer/order');
+    } else {
+        unset($cart[$id]);
+        session()->put('cart', $cart);
     }
 
-    public function delete(Request $request) {
+    return redirect('/customer/order');
+}
 
-        $cart = session()->get('cart');
-        if(isset($cart[$request->get('id')])) {
-            unset($cart[$request->get('id')]);
-            session()->put('cart', $cart);
-        }
-        return redirect('/customer/order');
+public function minus(Request $request)
+{
+    $cart = session()->get('cart');
 
+    $id = $request->get('id');
+    $quantity = $cart[$id]['quantity'] - 1;
 
+    if ($quantity > 0) {
+        $cart[$id]['quantity'] = $quantity;
+        session()->put('cart', $cart);
+    } else {
+        unset($cart[$id]);
+        session()->put('cart', $cart);
     }
+
+    return redirect('/customer/order');
+}
+
+public function delete(Request $request)
+{
+    $cart = session()->get('cart');
+
+    $id = $request->get('id');
+
+    if (isset($cart[$id])) {
+        unset($cart[$id]);
+        session()->put('cart', $cart);
+    }
+
+    return redirect('/customer/order');
+}
+
 }

@@ -1,12 +1,13 @@
 <?php
 
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
-use App\Models\Product;
-use App\Models\User;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,7 +79,13 @@ Route::prefix('consignor')->middleware(['consignor'])->group(function() {
     Route::get('/home', function() {
         return view('consignor.home', [
             'title' => 'Home',
-            'products' => Product::all()->where('id_consignor' , '=', auth()->user()->id)
+            'products' => Product::all()->where('id_consignor' , '=', auth()->user()->id),
+            'orders' => Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
+                    ->join('products', 'order_details.product_id', '=', 'products.id')
+                    ->select('orders.id', 'orders.id_customer', 'orders.created_at as order_time', 'products.product_name', 'order_details.quantity', 'order_details.subtotal', 'orders.total')
+                    ->where('products.id_consignor', '=', auth()->user()->id)
+                    ->orderBy('orders.id', 'asc')
+                    ->get()
         ]);
     });
     Route::get('/product', [ProductController::class, 'index']);

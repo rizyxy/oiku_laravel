@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{!! asset('assets/css/consignor/dash.css') !!}">
 @endsection
 @section('content')
+@php
+    $penjualan = $orders->sum('quantity');
+    $income = $orders->sum('subtotal');
+@endphp
     <section class="main-body">
         <div class="container">
             <div class="sub-container">
@@ -12,11 +16,11 @@
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENJUALAN</h1>
-                <p class="isi">12</p> {{-- Count Penjualan by Item Consignor --}}
+                <p class="isi">{{ $penjualan }}</p> {{-- Count Penjualan by Item Consignor --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
-                <p class="isi">Rp1.200.000</p> {{-- Count Total Pendapatan dari penjualan Item Consignor --}}
+                <p class="isi">Rp {{ $income }}</p> {{-- Count Total Pendapatan dari penjualan Item Consignor --}}
             </div>
         </div>
 

@@ -27,6 +27,7 @@
                             return $detail->product->id_consignor === auth()->user()->id;
                         });
                         $rowCount = count($consignorProducts);
+                        $totalSubtotal = $consignorProducts->sum('subtotal');
                     @endphp
 
                     @if ($rowCount > 0 && !in_array($order->id, $processedOrderIds))
@@ -58,7 +59,7 @@
                                 </td>
                                 @if ($rowIndex === 0)
                                     <td class="total" rowspan="{{ $rowCount }}">
-                                        <h3>Rp {{ $order->total }}</h3>
+                                        <h3>Rp {{ "$totalSubtotal" }}</h3>
                                     </td>
                                 @endif
                             </tr>

@@ -17,7 +17,7 @@
                         <img src="{{ asset('storage/' . $item['product']->product_image) }}" alt="" class="cart-img">
                         <div class="detail-box">
                             <h2 class="cart-product-title">{{ $item['product']->product_name }}</h2>
-                            <div class="cart-price">{{ $item['product']->product_price }}</div>
+                            <div class="cart-price">Rp {{ $item['product']->product_price }}</div>
                             <input type="text" name="id" value="{{ $item['product']->id }}" hidden>
                             <div class="quantity-container">
                                 <form action="/customer/cart/minus" method="POST">
