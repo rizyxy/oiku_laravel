@@ -17,9 +17,15 @@
     <input type="number" name="product_price" id="item-price" placeholder="Item Price" value="{{ $product->product_price }}" required>
     <div class="drop-down">
         <label for="Availability">Availability : </label>
-        <select id="product_avail" name="product_avail" required>
-          <option value="Available">Available</option>
+        <select id="product_avail" name="product_avail"required>
+          @if ($product->product_avail == 'Available')
+          <option value="Available" selected>Available</option>
           <option value="Not Available">Not Available</option>
+          @endif
+          @if ($product->product_avail == 'Not Available')
+          <option value="Available">Available</option>
+          <option value="Not Available" selected>Not Available</option>
+          @endif
         </select>
       </div>
     <button type="submit" class="all-btn btn-add-product">Update Product</button>
