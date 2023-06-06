@@ -39,10 +39,11 @@
                     <input type="text" name="address-user" id="address-user" value="{{  $consignor->address }}" readonly>
                 </td>
                 <td class="fill">
-                    <button class="crud-btn edit-user">Edit</button>
-                </td>
-                <td class="fill">
-                    <button class="crud-btn del-user">Delete</button>
+                    <form action="/admin/consignor/delete/{{ $consignor->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button class="crud-btn del-user" type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

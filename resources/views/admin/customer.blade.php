@@ -37,12 +37,13 @@
                 <td class="fill">
                     <input type="text" name="address-user" id="address-user" value="{{  $customer->address }}" readonly>
                 </td>
-                <td class="fill">
-                    <button class="crud-btn edit-user">Edit</button>
-                </td>
-                <td class="fill">
-                    <button class="crud-btn del-user">Delete</button>
-                </td>
+                <form action="/admin/customer/delete/ {{ $customer->id }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <td class="fill">
+                        <button class="crud-btn del-user">Delete</button>
+                    </td>
+                </form>
             </tr>
             @endforeach
 

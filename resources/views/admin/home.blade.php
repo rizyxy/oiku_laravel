@@ -9,23 +9,23 @@
         <div class="container">
             <div class="sub-container">
                 <h1 class="title">TOTAL PRODUK</h1>
-                <p class="isi">2</p> {{-- Count aLL Produk --}}
+                <p class="isi">{{ $products->count() }}</p> {{-- Count aLL Produk --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENJUALAN</h1>
-                <p class="isi">10</p> {{-- Count All Penjualan --}}
+                <p class="isi">{{ $orders->count() }}</p> {{-- Count All Penjualan --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
-                <p class="isi">Rp1.200.000</p> {{-- Count Total Pendapatan dari penjualan --}}
+                <p class="isi">Rp {{ $orders->sum('total') }}</p> {{-- Count Total Pendapatan dari penjualan --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL CONSGINOR</h1>
-                <p class="isi">2</p> {{-- Count Total Consignor --}}
+                <p class="isi">{{ $consignors }}</p> {{-- Count Total Consignor --}}
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL CUSTOMER</h1>
-                <p class="isi">3</p> {{-- Count Total Customer --}}
+                <p class="isi">{{ $customers }}</p> {{-- Count Total Customer --}}
             </div>
         </div>
     </section>

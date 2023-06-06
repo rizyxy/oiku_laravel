@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +16,11 @@ class UserController extends Controller
     public function home() {
         if (Auth::user()->role == 'admin') {
             return view('admin.home', [
-                'title' => "Home"
+                'title' => "Home",
+                'customers' => User::all()->where('role', '=', 'customer')->count(),
+                'consignors' => User::all()->where('role', '=', 'consignor')->count(),
+                'orders' => Order::all(),
+                'products' => Product::all()
             ]);
         } else if (Auth::user()->role == 'consignor') {
             return view('consignor.home', [
@@ -57,7 +63,6 @@ class UserController extends Controller
         $data = $request->all();
 
         User::create([
-            'profile_pic' => $data['profile_pic'],
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -168,6 +173,13 @@ class UserController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function destroy(User $user)
+    {
+        User::destroy($user->id);
+
+        return redirect()->back();
     }
 
     public function logout() {

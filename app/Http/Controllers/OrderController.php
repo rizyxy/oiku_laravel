@@ -27,7 +27,7 @@ class OrderController extends Controller
         } else if (auth()->user()->role == 'admin') {
             return view('admin.transaction', [
                 'title' => 'Transaction',
-                'orders' => Order::with('orderDetails')->get()
+                'orders' => Order::with('orderDetails.product')->get()
             ]);
         } else if(auth()->user()->role == 'consignor') {
             return view('consignor.transaction', [
@@ -116,6 +116,20 @@ class OrderController extends Controller
     {
         return view('customer.history', [
             'title' => 'Order History'
+        ]);
+    }
+
+    public function accept(Order $order)
+    {
+        Order::where('id', '=', $order->id)->update([
+            'status' => 'accepted'
+        ]);
+    }
+
+    public function cancel(Order $order)
+    {
+        Order::where('id', '=', $order->id)->update([
+            'status' => 'cancelled'
         ]);
     }
 

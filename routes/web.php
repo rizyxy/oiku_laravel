@@ -107,18 +107,14 @@ Route::prefix('consignor')->middleware(['consignor'])->group(function() {
 //Admin
 Route::prefix('admin')->middleware(['admin'])->group(function() {
     
-    Route::get('/home', function() {
-        return view('admin.home', [
-            'title' => 'Home',
-            'products' => Product::all()
-        ]);
-    });
+    Route::get('/home', [UserController::class, 'home']);
     Route::get('/product', [ProductController::class, 'index']);
     Route::get('/transaction', [OrderController::class, 'index']);
     Route::get('/take-order', function() {
         return view('admin.take_order', [
             'title' => 'Take Order',
-            'admin' => User::all()->where('role', '=', 'admin')
+            'admin' => User::all()->where('role', '=', 'admin'),
+            'orders' => Order::with('orderDetails.product')->get()
         ]);
     });
     Route::get('/consignor', function() {
@@ -139,6 +135,8 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
         ]);
     });
     Route::post('/add-consignor/store-consignor', [UserController::class, 'add_cons']);
+    Route::delete('/consignor/delete/{user:id}', [UserController::class, 'destroy']);
+    Route::delete('/customer/delete/{user:id}', [UserController::class, 'destroy']);
 });
 
 
