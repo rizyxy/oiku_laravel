@@ -60,7 +60,6 @@
                 </div>
             @endforeach
         </div>
-        <a href="/admin/product"><button class="bottom-btn">Manage Your Product</button></a>
     </section>
     <br>
 @endsection

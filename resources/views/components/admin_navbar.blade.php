@@ -24,7 +24,7 @@
             </div>
             <hr>
             <a href="/admin/product" class="sub-menu-link">
-                <p>Manage Products</p>
+                <p>All Products</p>
                 <span>></span>
             </a>
             <a href="/admin/take-order" class="sub-menu-link">

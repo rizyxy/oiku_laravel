@@ -19,9 +19,7 @@
                 <th>Name Product</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th> Availability</th>
-                <th> </th>
-                <th> </th>
+                <th>Availability</th>
             </tr>
             @foreach ($products as $product)
             <tr>
@@ -32,7 +30,7 @@
                     <input type="text" class="id-product" value="{{ $product->id }}" readonly>
                 </td>
                 <td >
-                    <input type="datetime" class="added-time" value="{{ $product->timestamps }}" readonly>
+                    <input type="datetime" class="added-time" value="{{ $product->created_at }}" readonly>
                 </td>
                 <td>
                     <input type="image" class="image-product" src="{{ asset('storage/'.$product->product_image) }}" readonly>
@@ -48,12 +46,6 @@
                 </td>
                 <td>
                     <input type="text" class="avail-product" value="{{ $product->product_avail }}" readonly>
-                </td>
-                <td>
-                    <button class="crud-btn edit-user">Edit</button>
-                </td>
-                <td>
-                    <button class="crud-btn del-user">Delete</button>
                 </td>
             </tr>
             <hr>

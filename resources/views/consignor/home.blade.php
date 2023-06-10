@@ -16,7 +16,7 @@
             <div class="sub-container">
                 <h1 class="title">TOTAL PENJUALAN</h1>
                 <div class="sub-content">
-                    <p class="isi">{{ $orders->where('status', 'Accepted')->count() }}</p> 
+                    <p class="isi">{{ $orders->where('status', 'Accepted')->pluck('order_id')->unique()->count() }}</p> 
                 </div>
             </div>
             <div class="sub-container">
