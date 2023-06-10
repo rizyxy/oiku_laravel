@@ -8,7 +8,7 @@
 <section class="main-body">
     <div class="Container">
         <h1>Edit Profile</h1>
-<form action="/consignor/update-profile/{{ auth()->user()->id }}" method="POST">
+<form action="/consignor/update-profile/{{ auth()->user()->id }}" method="POST"  enctype="multipart/form-data">
     @method('put')
     @csrf
     <input type="file" name="profile_pic" id="consignor-img">

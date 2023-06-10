@@ -93,7 +93,6 @@ class UserController extends Controller
         $data = $request->all();
 
         User::create([
-            'profile_pic' => $data['profile_pic'],
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -166,9 +165,11 @@ class UserController extends Controller
         ]);
 
         $data = $request->all();
+        $image = $request->file('profile_pic');
+        $path =  $image->store('profile_pics');
 
         User::where('id', '=', $user->id)->update([
-            'profile_pic' => $data['profile_pic'] ?? $user->profile_pic,
+            'profile_pic' => $path ?? $user->profile_pic,
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],

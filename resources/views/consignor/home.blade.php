@@ -3,11 +3,8 @@
 @section('css')
     <link rel="stylesheet" href="{!! asset('assets/css/consignor/dash.css') !!}">
 @endsection
+
 @section('content')
-@php
-    $penjualan = $orders->where('status', 'Accepted')->sum('quantity');
-    $income = $orders->where('status', 'Accepted')->sum('subtotal');
-@endphp
     <section class="main-body">
         <div class="container">
             <div class="sub-container">
@@ -25,13 +22,13 @@
             <div class="sub-container">
                 <h1 class="title">TOTAL PRODUK TERJUAL</h1>
                 <div class="sub-content">
-                    <p class="isi">{{ $penjualan }}</p> 
+                    <p class="isi">{{ $orders->where('status', 'Accepted')->sum('quantity') }}</p> 
                 </div>
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
                 <div class="sub-content">
-                    <p class="isi">Rp {{ $income }}</p> 
+                    <p class="isi">Rp {{ $orders->where('status', 'Accepted')->sum('subtotal') }}</p> 
                 </div>
             </div>
         </div>

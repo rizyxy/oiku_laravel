@@ -23,7 +23,7 @@ class Product extends Model
     }
 
     public function consignor() {
-        return $this->belongsTo(User::class, 'id_consignor');
+        return $this->belongsTo(auth()->user()->id, 'id_consignor');
     }
 
 }
