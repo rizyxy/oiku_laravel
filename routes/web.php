@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,12 @@ Route::middleware(['guest'])->group(function() {
     Route::get('/', function() {
         return view('guest.home', [
             'title' => 'Home',
-            'products' => Product::take(4)->get()
+            'products' => Product::join('order_details', 'products.id', '=', 'order_details.product_id')
+            ->select('products.*', DB::raw('COUNT(order_details.product_id) as total_sales'))
+            ->groupBy('products.id')
+            ->orderByDesc('total_sales')
+            ->where('products.product_avail', 'Available')
+            ->get()
         ]);
     });
     Route::get('/catalog', [ProductController::class, 'index']);
@@ -46,7 +52,12 @@ Route::prefix('customer')->middleware(['customer'])->group(function() {
     Route::get('/home', function() {
         return view('customer.home', [
             'title' => 'Home',
-            'products' => Product::take(4)->get()
+            'products' => Product::join('order_details', 'products.id', '=', 'order_details.product_id')
+            ->select('products.*', DB::raw('COUNT(order_details.product_id) as total_sales'))
+            ->groupBy('products.id')
+            ->orderByDesc('total_sales')
+            ->where('products.product_avail', 'Available')
+            ->get()
         ]);
     });
     Route::get('/catalog', [ProductController::class, 'index']);
@@ -110,9 +121,11 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
         return view('admin.take_order', [
             'title' => 'Take Order',
             'admin' => User::all()->where('role', '=', 'admin'),
-            'orders' => Order::with('orderDetails.product')->get()
+            'orders' => Order::with('orderDetails.product')->where('status', 'Waiting')->get()
         ]);
     });
+    Route::post('/order/{order}/accept', [OrderController::class, 'accept'])->name('order.accept');
+    Route::post('/order/{order}/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
     Route::get('/consignor', function() {
         return view('admin.consignor', [
             'title' => 'Consignor List',

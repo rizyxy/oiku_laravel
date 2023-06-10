@@ -12,7 +12,12 @@
 .heading h4 {
     color: #E70C0C;
 }
-
+.no-order{
+    font-size: 3rem;
+    font-weight: 600;
+    color: #291720;
+    margin-top: 2rem;
+}
 .row {
     display: flex;
     justify-content: space-between;

@@ -52,7 +52,7 @@
                                     <h3>Rp {{ $order->total }}</h3>
                                 </td>
                                 <td class="status-product" rowspan="{{ $rowCount }}">
-                                    <h3>Waiting</h3>
+                                    <h3>{{ $order->status }}</h3>
                                 </td>
                             @endif
                         </tr>

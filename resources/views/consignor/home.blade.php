@@ -5,22 +5,34 @@
 @endsection
 @section('content')
 @php
-    $penjualan = $orders->sum('quantity');
-    $income = $orders->sum('subtotal');
+    $penjualan = $orders->where('status', 'Accepted')->sum('quantity');
+    $income = $orders->where('status', 'Accepted')->sum('subtotal');
 @endphp
     <section class="main-body">
         <div class="container">
             <div class="sub-container">
                 <h1 class="title">TOTAL PRODUK</h1>
-                <p class="isi">{{ $products->count() }}</p> {{-- Count Produk Consignor --}}
+                <div class="sub-content">
+                    <p class="isi">{{ $products->count() }}</p>
+                </div> 
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENJUALAN</h1>
-                <p class="isi">{{ $penjualan }}</p> {{-- Count Penjualan by Item Consignor --}}
+                <div class="sub-content">
+                    <p class="isi">{{ $orders->where('status', 'Accepted')->count() }}</p> 
+                </div>
+            </div>
+            <div class="sub-container">
+                <h1 class="title">TOTAL PRODUK TERJUAL</h1>
+                <div class="sub-content">
+                    <p class="isi">{{ $penjualan }}</p> 
+                </div>
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
-                <p class="isi">Rp {{ $income }}</p> {{-- Count Total Pendapatan dari penjualan Item Consignor --}}
+                <div class="sub-content">
+                    <p class="isi">Rp {{ $income }}</p> 
+                </div>
             </div>
         </div>
 
@@ -36,6 +48,8 @@
                     <h2 class="product-title">{{ $product->product_name }}</h2>
                     <p>{{ $product->product_desc }}</p>
                     <span class="price">Rp {{ $product->product_price }}</span>
+                    <br>
+                    <span class="status">{{ $product->product_avail }}</span>
                 </div>
             @endforeach
         </div>

@@ -11,7 +11,12 @@ h3 span{
     
     color: #820263;
 }
-
+.no-order{
+    font-size: 3rem;
+    font-weight: 600;
+    color: #291720;
+    margin-top: 2rem;
+}
 .catalog .box-container {
     display: grid;
     gap: 2rem;
@@ -77,6 +82,19 @@ h3 span{
     font-size: 14px;
     cursor: pointer;
     text-align: center;
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.decision form {
+    display: inline;
+    margin: 0 5px; 
+    width: 100%;
+}
+
+.decision button {
+    margin: 0; 
 }
 
 .remove-cart {

@@ -14,6 +14,12 @@ class Order extends Model
         'status',
         'total'
     ];
+    protected static function booted()
+    {
+        static::creating(function ($order) {
+            $order->status = 'Waiting';
+        });
+    }
 
     public function orderDetails() {
         return $this->hasMany(OrderDetail::class);

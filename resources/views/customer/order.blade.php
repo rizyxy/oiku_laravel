@@ -45,7 +45,10 @@
                     </div>
                 @endforeach
             @else
-                <p style="font-size: 20px">Empty</p>
+            <div class="no-order">
+                <p>Empty</p>
+                <div class="divided"></div>
+            </div>
             @endif
         </div>
         <div class="total">

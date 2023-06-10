@@ -11,6 +11,12 @@
         <h4>Take Order</h4>
     </div>
     <div class="divided"></div>
+    @if ($orders->isEmpty())
+        <div class="no-order">
+            <p>There are no orders at the moment</p>
+            <div class="divided"></div>
+        </div>
+    @else
     @foreach ($orders as $order)
         <div class="cart-content">
             <div class="person-order">
@@ -24,6 +30,7 @@
                     <h3>Customer 2</h3>
                 </div>
             </div>
+            
         </div>
         @foreach ($order->orderDetails as $detail)
         <div class="cart-box">
@@ -37,21 +44,28 @@
                 <div class="cart-price">Rp {{ $detail->subtotal }}</div>
                 <input type="number" min="1" value="{{ $detail->quantity }}" class="cart-quantity" readonly>
             </div>
-            <div class="decision">
-                <button class="acc-cart">Accept</button>
-                <button class="remove-cart">Remove</button>
-            </div>
         </div>
         @endforeach
         <div class="total">
             <div class="total-title">Total</div>
             <div class="total-price">Rp {{ $order->total }}</div>
         </div>
+        <div class="decision">
+            <form action="{{ route('order.accept', $order->id) }}" method="POST" style="display: inline">
+                @csrf
+                <button type="submit" class="acc-cart">Accept</button>
+            </form>
+            <form action="{{ route('order.cancel', $order->id) }}" method="POST" style="display: inline">
+                @csrf
+                <button type="submit" class="remove-cart">Remove</button>
+            </form>
+        </div>
     </div>
     <div class="divided"></div>
+ 
     @endforeach
     <div class="cart-content">
-
+        @endif
 
 
 

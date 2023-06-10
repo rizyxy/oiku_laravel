@@ -24,7 +24,14 @@ class UserController extends Controller
             ]);
         } else if (Auth::user()->role == 'consignor') {
             return view('consignor.home', [
-                'title' => "Home"
+                'title' => "Home",
+                'orders' => Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
+                                ->join('products', 'order_details.product_id', '=', 'products.id')
+                                ->select('orders.id', 'orders.id_customer', 'orders.created_at as order_time', 'orders.status','products.product_name', 'order_details.quantity', 'order_details.subtotal', 'orders.total')
+                                ->where('status', '=', 'Accepted')
+                                ->where('products.id_consignor', '=', auth()->user()->id)
+                                ->get(),
+                'products' => Product::where('id_consignor', '=', auth()->user()->id)->get(),
             ]);
         } else if (Auth::user()->role == 'customer') {
             return view('customer.home', [

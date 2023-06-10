@@ -14,7 +14,7 @@
             <button type="submit">Log In</button>
         </form>
         <div class="fyp">
-            <a href="forgotPassword.html" target="_blank">Forgot your password?</a>
+            
         </div>
         <div class="dha">
             <p>Don't have an account?</p>

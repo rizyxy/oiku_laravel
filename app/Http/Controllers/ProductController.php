@@ -32,13 +32,13 @@ class ProductController extends Controller
             } else if (auth()->user()->role == 'admin') {
                 return view('admin.product', [
                     'title' => 'Product',
-                    'products' => Product::all()
+                    'products' => Product::where('product_avail', 'Available')->get()
                 ]);
             }
         } else {
             return view('guest.catalog', [
                 'title' => 'Catalog',
-                'products' => Product::all()
+                'products' => Product::where('product_avail', 'Available')->get()
             ]);
         }
     }
@@ -121,11 +121,12 @@ class ProductController extends Controller
             'product_desc' => 'required',
             'product_avail' => 'required',
         ]);
-
+        $image = $request->file('product_image');
+        $path =  $image->store('product_images');
         $data = $request->all();
 
         Product::where('id', '=', $product->id)->update([
-            'product_image' => $data['product_image'] ?? $product->product_image,
+            'product_image' => $path,
             'product_name' => $data['product_name'],
             'product_desc' => $data['product_desc'],
             'product_price' => $data['product_price'],

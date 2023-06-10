@@ -30,14 +30,23 @@
 
     <div class="box-container">
         @foreach ($products->take(4) as $product)
-        <div class="box">
-            <img src="{{ asset('storage/'.$product->product_image) }}"
-                alt="{{ $product->product_name }}" class="product-img">
-            <h2 class="product-title">{{ $product->product_name }}</h2>
-            <p>{{ $product->product_desc }}</p>
-            <span class="price">Rp {{ $product->product_price }}</span>
-            <a onclick="return " class="all-btn add-cart">Order Now</a>
-        </div>
+            <div class="box">
+                <img src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->product_name }}"
+                    class="product-img">
+                <h2 class="product-title">{{ $product->product_name }}</h2>
+                <p>{{ $product->product_desc }}</p>
+                <div class="product-info">
+                    <span class="price">Rp {{ $product->product_price }}</span>
+                    <br>
+                    <span class="sales">Total Sales: {{ $product->total_sales }}</span>
+                    <br>
+                    <form action="/customer/cart" method="post">
+                        @csrf
+                        <input type="text" name="id" value="{{ $product->id }}" hidden>
+                        <button type="submit" class="all-btn add-cart">Add</button>
+                    </form>
+                </div>
+            </div>
         @endforeach
     </div>
     <br>
@@ -45,7 +54,7 @@
         <h1>Catalog</h1>
         <p>We provide various types of delicious cakes and can be your choice with the best quality.</p>
         <br>
-        <a href="/catalogCust" class="all-btn">See More</a>
+        <a href="/customer/catalog" class="all-btn">See More</a>
     </div>
 </section>
 @endsection

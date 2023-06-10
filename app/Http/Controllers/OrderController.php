@@ -27,7 +27,9 @@ class OrderController extends Controller
         } else if (auth()->user()->role == 'admin') {
             return view('admin.transaction', [
                 'title' => 'Transaction',
-                'orders' => Order::with('orderDetails.product')->get()
+                'orders' => Order::with('orderDetails.product')
+                ->where('status', '=', 'Accepted')
+                ->get()
             ]);
         } else if(auth()->user()->role == 'consignor') {
             return view('consignor.transaction', [
@@ -35,6 +37,7 @@ class OrderController extends Controller
                 'orders' => Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
                                 ->join('products', 'order_details.product_id', '=', 'products.id')
                                 ->select('orders.id', 'orders.id_customer', 'orders.created_at as order_time', 'products.product_name', 'order_details.quantity', 'order_details.subtotal', 'orders.total')
+                                ->where('status', '=', 'Accepted')
                                 ->where('products.id_consignor', '=', auth()->user()->id)
                                 ->orderBy('orders.id', 'asc')
                                 ->get()
@@ -122,15 +125,17 @@ class OrderController extends Controller
     public function accept(Order $order)
     {
         Order::where('id', '=', $order->id)->update([
-            'status' => 'accepted'
+            'status' => 'Accepted'
         ]);
+        return redirect()->back();
     }
 
     public function cancel(Order $order)
     {
         Order::where('id', '=', $order->id)->update([
-            'status' => 'cancelled'
+            'status' => 'Cancelled'
         ]);
+        return redirect()->back();
     }
 
     /**

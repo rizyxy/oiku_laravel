@@ -9,23 +9,39 @@
         <div class="container">
             <div class="sub-container">
                 <h1 class="title">TOTAL PRODUK</h1>
-                <p class="isi">{{ $products->count() }}</p> {{-- Count aLL Produk --}}
+                <div class="sub-content">
+                    <p class="isi">{{ $products->count() }}</p></div> 
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENJUALAN</h1>
-                <p class="isi">{{ $orders->count() }}</p> {{-- Count All Penjualan --}}
+                <div class="sub-content">
+                    <p class="isi">{{ $orders->where('status', 'Accepted')->count() }}</p> 
+                </div>
+            </div>
+            <div class="sub-container">
+                <h1 class="title">TOTAL PRODUK TERJUAL</h1>
+                <div class="sub-content">
+                    <p class="isi">{{ $orders->where('status', 'Accepted')->sum(function ($order) {
+                        return $order->orderDetails->sum('quantity');
+                    }) }}</p> 
+                </div>
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
-                <p class="isi">Rp {{ $orders->sum('total') }}</p> {{-- Count Total Pendapatan dari penjualan --}}
+                <div class="sub-content">
+                    <p class="isi">Rp {{ $orders->sum('total') }}</p> 
+                </div>
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL CONSGINOR</h1>
-                <p class="isi">{{ $consignors }}</p> {{-- Count Total Consignor --}}
+                <div class="sub-content">
+                    <p class="isi">{{ $consignors }}</p></div> 
             </div>
             <div class="sub-container">
                 <h1 class="title">TOTAL CUSTOMER</h1>
-                <p class="isi">{{ $customers }}</p> {{-- Count Total Customer --}}
+                <div class="sub-content">
+                    <p class="isi">{{ $customers }}</p>
+                </div> 
             </div>
         </div>
     </section>
