@@ -29,7 +29,7 @@
             <div class="sub-container">
                 <h1 class="title">TOTAL PENDAPATAN</h1>
                 <div class="sub-content">
-                    <p class="isi">Rp {{ $orders->sum('total') }}</p> 
+                    <p class="isi">Rp {{ $orders->where('status','Accepted')->sum('total') }}</p> 
                 </div>
             </div>
             <div class="sub-container">

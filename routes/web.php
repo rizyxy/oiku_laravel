@@ -28,10 +28,12 @@ Route::middleware(['guest'])->group(function() {
         return view('guest.home', [
             'title' => 'Home',
             'products' => Product::join('order_details', 'products.id', '=', 'order_details.product_id')
-            ->select('products.*', DB::raw('COUNT(order_details.product_id) as total_sales'))
+            ->join('orders', 'orders.id','=','order_details.order_id')
+            ->select('products.*', DB::raw('COUNT(order_details.product_id) as total_sales'),'orders.status')
             ->groupBy('products.id')
             ->orderByDesc('total_sales')
             ->where('products.product_avail', 'Available')
+            ->where('orders.status','Accepted')
             ->get()
         ]);
     });
@@ -53,10 +55,12 @@ Route::prefix('customer')->middleware(['customer'])->group(function() {
         return view('customer.home', [
             'title' => 'Home',
             'products' => Product::join('order_details', 'products.id', '=', 'order_details.product_id')
-            ->select('products.*', DB::raw('COUNT(order_details.product_id) as total_sales'))
+            ->join('orders', 'orders.id','=','order_details.order_id')
+            ->select('products.*', DB::raw('COUNT(order_details.product_id) as total_sales','orders.status'))
             ->groupBy('products.id')
             ->orderByDesc('total_sales')
             ->where('products.product_avail', 'Available')
+            ->where('orders.status','Accepted')
             ->get()
         ]);
     });
