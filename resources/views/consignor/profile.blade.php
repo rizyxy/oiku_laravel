@@ -16,21 +16,21 @@
                 <td class="label"><label>Nama Pemilik</label></td>
                 <td class="equals">:</td>
                 <td class="input">
-                    <input class="fill" type="text" name="nama" id="nama" value="{{ $user->name }}"><br>
+                    <input class="fill" type="text" name="nama" id="nama" value="{{ $user->name }}" readonly><br>
                 </td>
             </tr>
             <tr>
                 <td class="label"><label>ID</label></td>
                 <td class="equals">:</td>
                 <td class="input">
-                    <input class="fill" type="text" name="nama" id="nama" value="{{ $user->id }}"><br>
+                    <input class="fill" type="text" name="nama" id="nama" value="{{ $user->id }}" readonly><br>
                 </td>
             </tr>
             <tr>
                 <td class="label"><label>Email</label></td>
                 <td class="equals">:</td>
                 <td class="input">
-                    <input class="fill" type="text" name="email" id="email" value="{{ $user->email }}"><br>
+                    <input class="fill" type="text" name="email" id="email" value="{{ $user->email }}" readonly><br>
                 </td>
             </tr>
             <tr>
