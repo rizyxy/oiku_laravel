@@ -28,7 +28,7 @@
                     <input type="text" class="id-product" value="{{ $product->id }}" readonly>
                 </td>
                 <td >
-                    <input type="datetime" class="added-time" value="{{ $product->timestamps }}" readonly>
+                    <input type="datetime" class="added-time" value="{{ $product->created_at }}" readonly>
                 </td>
                 <td>
                     <input type="image" class="image-product" readonly src="{{ asset('storage/'.$product->product_image) }}">
