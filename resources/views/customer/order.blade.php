@@ -8,7 +8,7 @@
     <section class="cart">
         <div class="heading row">
             <h4>Your Order</h4>
-            <a href="/customer/catalogCust">Add Order</a>
+            <a href="/customer/catalog">Add Order</a>
         </div>
         <div class="cart-content" id="cart-content">
             @if (isset($cart))

@@ -18,7 +18,7 @@
   border-radius: 10px;
   background-color: #FAEDED;
   border: 2px solid #D90368 ;
-  margin-bottom: 400px;
+  margin-bottom: 300px;
 }
 .Container h1{
   color: #AE0366;
@@ -28,7 +28,7 @@
   font-size: 40px;
 }
 .Container small{
-    margin-top: 10px;
+  margin-top: 10px;
   font-size: 12px;
   padding: 8px 10px;
 }
