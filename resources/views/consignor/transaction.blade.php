@@ -20,33 +20,36 @@
                     <th>Subtotal</th>
                     <th>Total</th>
                 </tr>
-                @php $processedOrderIds = []; @endphp
                 @foreach ($orders as $order)
-                    <tr class="fill">
-                        <td class="id-transaction" rowspan="{{ $order->orderDetails->count()  }}">
-                            <h3>{{ $order->id }}</h3>
-                        </td>
-                        <td class="id-customer" rowspan="{{ $order->orderDetails->count() }}">
-                            <h3>{{ $order->id_customer }}</h3>
-                        </td>
-                        <td class="order-time" rowspan="{{ $order->orderDetails->count() }}">
-                            <h3>{{ $order->created_at }}</h3>
-                        </td>
-                        @foreach ($order->orderDetails as $detail)
-                        <td class="name-product">
-                            <h3>{{ $detail->product->product_name }}</h3>
-                        </td>
-                        <td class="quantity">
-                            <h3>{{ $detail->quantity }}</h3>
-                        </td>
-                        <td class="subtotal">
-                            <h3>Rp {{ $detail->subtotal }}</h3>
-                        </td>
-                        @endforeach
-                        <td class="total" rowspan="{{ $order->orderDetails->count() }}">
-                            <h3>Rp {{ $order->orderDetails->sum('subtotal') }}</h3>
-                        </td>
-                    </tr>
+                    @foreach ($order->orderDetails as $detail)
+                        <tr class="fill">
+                            @if ($loop->first)
+                            <td class="id-transaction" rowspan="{{ $order->orderDetails->count()  }}">
+                                <h3>{{ $order->id }}</h3>
+                            </td>
+                            <td class="id-customer" rowspan="{{ $order->orderDetails->count() }}">
+                                <h3>{{ $order->id_customer }}</h3>
+                            </td>
+                            <td class="order-time" rowspan="{{ $order->orderDetails->count() }}">
+                                <h3>{{ $order->created_at }}</h3>
+                            </td>
+                            @endif
+                                <td class="name-product">
+                                    <h3>{{ $detail->product->product_name }}</h3>
+                                </td>
+                                <td class="quantity">
+                                    <h3>{{ $detail->quantity }}</h3>
+                                </td>
+                                <td class="subtotal">
+                                    <h3>Rp {{ $detail->subtotal }}</h3>
+                                </td>
+                            @if ($loop->first)
+                            <td class="total" rowspan="{{ $order->orderDetails->count() }}">
+                                <h3>Rp {{ $order->orderDetails->sum('subtotal') }}</h3>
+                            </td>
+                            @endif
+                        </tr>
+                    @endforeach
                 @endforeach
             </table>
         </div>
