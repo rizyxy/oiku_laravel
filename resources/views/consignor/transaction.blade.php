@@ -22,50 +22,31 @@
                 </tr>
                 @php $processedOrderIds = []; @endphp
                 @foreach ($orders as $order)
-                    @php
-                        $consignorProducts = $order->orderDetails->filter(function ($detail) {
-                            return $detail->product->id_consignor === auth()->user()->id;
-                        });
-                        $rowCount = count($consignorProducts);
-                        $totalSubtotal = $consignorProducts->sum('subtotal');
-                    @endphp
-
-                    @if ($rowCount > 0 && !in_array($order->id, $processedOrderIds))
-                        @php
-                            $processedOrderIds[] = $order->id;
-                            $rowIndex = 0;
-                        @endphp
-                        @foreach ($consignorProducts as $index => $detail)
-                            <tr class="fill">
-                                @if ($rowIndex === 0)
-                                    <td class="id-transaction" rowspan="{{ $rowCount }}">
-                                        <h3>{{ $order->id }}</h3>
-                                    </td>
-                                    <td class="id-customer" rowspan="{{ $rowCount }}">
-                                        <h3>{{ $order->id_customer }}</h3>
-                                    </td>
-                                    <td class="order-time" rowspan="{{ $rowCount }}">
-                                        <h3>{{ $detail->created_at }}</h3>
-                                    </td>
-                                @endif
-                                <td class="name-product">
-                                    <h3>{{ $detail->product->product_name }}</h3>
-                                </td>
-                                <td class="quantity">
-                                    <h3>{{ $detail->quantity }}</h3>
-                                </td>
-                                <td class="subtotal">
-                                    <h3>Rp {{ $detail->subtotal }}</h3>
-                                </td>
-                                @if ($rowIndex === 0)
-                                    <td class="total" rowspan="{{ $rowCount }}">
-                                        <h3>Rp {{ "$totalSubtotal" }}</h3>
-                                    </td>
-                                @endif
-                            </tr>
-                            @php $rowIndex++; @endphp
+                    <tr class="fill">
+                        <td class="id-transaction" rowspan="{{ $order->orderDetails->count()  }}">
+                            <h3>{{ $order->id }}</h3>
+                        </td>
+                        <td class="id-customer" rowspan="{{ $order->orderDetails->count() }}">
+                            <h3>{{ $order->id_customer }}</h3>
+                        </td>
+                        <td class="order-time" rowspan="{{ $order->orderDetails->count() }}">
+                            <h3>{{ $order->created_at }}</h3>
+                        </td>
+                        @foreach ($order->orderDetails as $detail)
+                        <td class="name-product">
+                            <h3>{{ $detail->product->product_name }}</h3>
+                        </td>
+                        <td class="quantity">
+                            <h3>{{ $detail->quantity }}</h3>
+                        </td>
+                        <td class="subtotal">
+                            <h3>Rp {{ $detail->subtotal }}</h3>
+                        </td>
                         @endforeach
-                    @endif
+                        <td class="total" rowspan="{{ $order->orderDetails->count() }}">
+                            <h3>Rp {{ $order->orderDetails->sum('subtotal') }}</h3>
+                        </td>
+                    </tr>
                 @endforeach
             </table>
         </div>

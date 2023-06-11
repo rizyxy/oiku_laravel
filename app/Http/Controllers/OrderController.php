@@ -34,13 +34,16 @@ class OrderController extends Controller
         } else if(auth()->user()->role == 'consignor') {
             return view('consignor.transaction', [
                 'title' => 'Transaction',
-                'orders' => Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
-                                ->join('products', 'order_details.product_id', '=', 'products.id')
-                                ->select('orders.id', 'orders.id_customer', 'orders.created_at as order_time', 'products.product_name', 'order_details.quantity', 'order_details.subtotal', 'orders.total')
-                                ->where('status', '=', 'Accepted')
-                                ->where('products.id_consignor', '=', auth()->user()->id)
-                                ->orderBy('orders.id', 'asc')
-                                ->get()
+                // 'orders' => Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
+                //                 ->join('products', 'order_details.product_id', '=', 'products.id')
+                //                 ->select('orders.id', 'orders.id_customer', 'orders.created_at as order_time', 'products.product_name', 'order_details.quantity', 'order_details.subtotal', 'orders.total')
+                //                 ->where('status', '=', 'Accepted')
+                //                 ->where('products.id_consignor', '=', auth()->user()->id)
+                //                 ->orderBy('orders.id', 'asc')
+                //                 ->get()
+                'orders' => Order::with(['orderDetails.product' => function($query) {
+                    $query->where('id_consignor', '=', auth()->user()->id);
+                }])->where('status', '=', 'Accepted')->get()
             ]);
         }
     }
