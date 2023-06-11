@@ -166,7 +166,11 @@ class UserController extends Controller
 
         $data = $request->all();
         $image = $request->file('profile_pic');
-        $path =  $image->store('profile_pics');
+
+        if ($image != null) {
+            $path =  $image->store('profile_pics');
+
+        }
 
         User::where('id', '=', $user->id)->update([
             'profile_pic' => $path ?? $user->profile_pic,

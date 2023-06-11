@@ -122,11 +122,15 @@ class ProductController extends Controller
             'product_avail' => 'required',
         ]);
         $image = $request->file('product_image');
-        $path =  $image->store('product_images');
+
+        if ($image != null) {
+            $path =  $image->store('product_images');
+        }
+
         $data = $request->all();
 
         Product::where('id', '=', $product->id)->update([
-            'product_image' => $path,
+            'product_image' => $path ?? $product->product_image, 
             'product_name' => $data['product_name'],
             'product_desc' => $data['product_desc'],
             'product_price' => $data['product_price'],
