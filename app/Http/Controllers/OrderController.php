@@ -41,9 +41,13 @@ class OrderController extends Controller
                 //                 ->where('products.id_consignor', '=', auth()->user()->id)
                 //                 ->orderBy('orders.id', 'asc')
                 //                 ->get()
-                'orders' => Order::with(['orderDetails.product' => function($query) {
+                'orders' => Order::with(['orderDetails' => function($query) {
+                    $query->whereHas('product', function($query) {
+                        $query->where('id_consignor', auth()->user()->id);
+                    });
+                }])->where('status', '=', 'Accepted')->whereHas('orderDetails.product', function($query) {
                     $query->where('id_consignor', '=', auth()->user()->id);
-                }])->where('status', '=', 'Accepted')->get()
+                })->get()
             ]);
         }
     }

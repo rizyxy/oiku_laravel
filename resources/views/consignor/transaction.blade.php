@@ -34,15 +34,15 @@
                                 <h3>{{ $order->created_at }}</h3>
                             </td>
                             @endif
-                                <td class="name-product">
-                                    <h3>{{ $detail->product->product_name }}</h3>
-                                </td>
-                                <td class="quantity">
-                                    <h3>{{ $detail->quantity }}</h3>
-                                </td>
-                                <td class="subtotal">
-                                    <h3>Rp {{ $detail->subtotal }}</h3>
-                                </td>
+                            <td class="name-product">
+                                <h3>{{ $detail->product->product_name ?? "" }}</h3>
+                            </td>
+                            <td class="quantity">
+                                <h3>{{ $detail->quantity }}</h3>
+                            </td>
+                            <td class="subtotal">
+                                <h3>Rp {{ $detail->subtotal }}</h3>
+                            </td>
                             @if ($loop->first)
                             <td class="total" rowspan="{{ $order->orderDetails->count() }}">
                                 <h3>Rp {{ $order->orderDetails->sum('subtotal') }}</h3>
